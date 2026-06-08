@@ -2,17 +2,19 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart QR Order Platform - 통합 기획서 및 사업계획서</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smart QR Order Platform - Pitch Deck</title>
+    <!-- Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #2563eb;
+            --primary: #3b82f6;
             --primary-dark: #1d4ed8;
             --primary-light: #eff6ff;
+            --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             --slate-900: #0f172a;
             --slate-800: #1e293b;
             --slate-700: #334155;
@@ -21,779 +23,725 @@
             --slate-400: #94a3b8;
             --slate-100: #f1f5f9;
             --slate-50: #f8fafc;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --danger: #dc2626;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --danger: #ef4444;
             --danger-light: #fef2f2;
-            --warning: #ea580c;
-            --warning-light: #fff7ed;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
             --purple: #8b5cf6;
+            --bg-color: #f4f6f9;
         }
 
         *, *::before, *::after {
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Noto Sans KR', sans-serif;
             font-size: 16px;
             line-height: 1.7;
             color: var(--slate-800);
-            background-color: #f4f6f9;
+            background-color: var(--bg-color);
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
-        /* Navigation or Top Bar for GitHub Pages style */
-        .top-navbar {
-            background-color: var(--slate-900);
-            color: #ffffff;
-            padding: 15px 30px;
-            position: sticky;
+        /* App-like Fixed Navigation (Glassmorphism) */
+        .navbar {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .top-navbar .brand {
-            font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: -0.5px;
+        .navbar.scrolled {
+            padding: 10px 5%;
+            background: rgba(15, 23, 42, 0.95);
         }
 
-        .top-navbar .badge {
-            background-color: var(--danger);
+        .nav-brand {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand span {
+            background-color: var(--primary);
             color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
             padding: 3px 8px;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             letter-spacing: 0.5px;
         }
 
-        /* Container Layout */
-        .container {
-            max-width: 960px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .nav-links {
+            display: flex;
+            gap: 20px;
         }
 
-        .document-body {
-            background-color: #ffffff;
-            padding: 50px 60px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+        .nav-links a {
+            color: var(--slate-100);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: 0.3s;
         }
 
         @media (max-width: 768px) {
-            .document-body {
-                padding: 30px 20px;
+            .nav-links {
+                display: none; /* Hide on mobile initially, could implement toggle */
             }
-            .container {
-                margin: 20px auto;
+            .menu-toggle {
+                display: flex;
             }
         }
-        
-        /* Cover Header Styling */
-        .cover-banner {
-            background-color: var(--slate-900);
-            color: #ffffff;
-            padding: 50px 40px;
-            border-radius: 10px;
-            margin-bottom: 50px;
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 5% 80px;
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .cover-tag {
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: var(--bg-color);
+            transform: skewY(-2deg);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
-            color: #60a5fa;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
         }
-        
-        .cover-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            line-height: 1.3;
-            margin: 0 0 20px 0;
-            letter-spacing: -0.5px;
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 0 0 20px;
+            letter-spacing: -1px;
+            animation: slideUp 0.8s ease-out;
         }
-        
-        .cover-title span {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #93c5fd;
-            display: block;
-            margin-top: 10px;
-        }
-        
-        .cover-subtitle {
-            font-size: 1.05rem;
-            color: var(--slate-400);
-            margin: 0;
+
+        .hero-subtitle {
+            font-size: 1.2rem;
             font-weight: 300;
+            color: #bfdbfe;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: slideUp 1s ease-out;
         }
-        
-        .cover-meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-            border-top: 1px solid var(--slate-700);
-            padding-top: 30px;
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 5%;
+            position: relative;
+            z-index: 10;
         }
-        
-        .meta-item {
-            display: flex;
-            flex-direction: column;
+
+        /* Sections & Cards */
+        section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        
-        .meta-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--slate-400);
-            text-transform: uppercase;
-            margin-bottom: 4px;
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        .meta-value {
-            font-size: 0.95rem;
-            color: #ffffff;
-            font-weight: 500;
+
+        @media (max-width: 768px) {
+            section {
+                padding: 30px 20px;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
         }
-        
+
         /* Typography */
         h1.section-title {
-            font-size: 1.65rem;
+            font-size: 1.75rem;
             color: var(--slate-900);
-            margin-top: 50px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--slate-900);
-            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h1.section-title::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 4px;
         }
         
         h2 {
             font-size: 1.25rem;
             color: var(--slate-800);
-            border-left: 4px solid var(--primary);
-            padding-left: 12px;
             margin-top: 35px;
             margin-bottom: 15px;
-        }
-        
-        h3 {
-            font-size: 1.05rem;
-            color: var(--slate-700);
-            margin-top: 25px;
-            margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         p {
             margin: 0 0 16px 0;
-            text-align: justify;
-            color: var(--slate-700);
+            color: var(--slate-600);
         }
-        
-        ul, ol {
-            margin: 0 0 20px 0;
-            padding-left: 24px;
-            color: var(--slate-700);
+
+        ul {
+            padding-left: 20px;
+            color: var(--slate-600);
         }
         
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
-        
-        strong {
+
+        li strong {
             color: var(--slate-900);
-            font-weight: 700;
-        }
-        
-        /* Tables */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--slate-100);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-        
-        th {
-            background-color: var(--slate-800);
-            color: #ffffff;
-            font-weight: 600;
-            padding: 12px 16px;
-            font-size: 0.9rem;
-            border: 1px solid var(--slate-700);
-        }
-        
-        td {
-            padding: 14px 16px;
-            font-size: 0.9rem;
-            border: 1px solid var(--slate-100);
-            color: var(--slate-700);
-            background-color: #ffffff;
-        }
-        
-        tr:nth-child(even) td {
-            background-color: var(--slate-50);
-        }
-        
-        /* Highlighted Column for Competitor Matrix */
-        td.highlight-col {
-            background-color: var(--primary-light) !important;
-            border: 2px solid var(--primary);
-            font-weight: 600;
-        }
-        th.highlight-col {
-            background-color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        /* SWOT Matrix Layout */
-        .swot-grid {
+        /* Dynamic Grid Layouts */
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 30px;
+            margin-top: 20px;
         }
 
-        @media (max-width: 480px) {
-            .swot-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .swot-box {
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        
-        .swot-s { background-color: var(--success-light); border: 1px solid #bbf7d0; border-left: 5px solid var(--success); }
-        .swot-w { background-color: var(--danger-light); border: 1px solid #fecaca; border-left: 5px solid var(--danger); }
-        .swot-o { background-color: var(--primary-light); border: 1px solid #bfdbfe; border-left: 5px solid var(--primary); }
-        .swot-t { background-color: var(--warning-light); border: 1px solid #ffedd5; border-left: 5px solid var(--warning); }
-        
-        .swot-header {
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            display: block;
-        }
-        .swot-s .swot-header { color: #166534; }
-        .swot-w .swot-header { color: #991b1b; }
-        .swot-o .swot-header { color: #1e40af; }
-        .swot-t .swot-header { color: #9a3412; }
-        
-        /* Customer Segment Cards Layout */
-        .segment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .segment-card {
-            padding: 24px;
-            background-color: #ffffff;
+        .card {
+            background: var(--slate-50);
+            padding: 25px;
+            border-radius: 12px;
             border: 1px solid var(--slate-100);
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .segment-card:hover {
-            transform: translateY(-2px);
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+            border-color: #cbd5e1;
         }
-        
-        .segment-card h3 {
+
+        .card h3 {
             margin-top: 0;
-            color: var(--slate-900);
             font-size: 1.15rem;
+            color: var(--slate-900);
         }
-        
-        .segment-card .tag {
+
+        .card .badge {
             display: inline-block;
-            background-color: var(--slate-100);
-            color: var(--slate-600);
-            padding: 6px 14px;
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 700;
             margin-top: 15px;
         }
-        
-        .segment-card:nth-child(1) { border-top: 4px solid var(--primary); }
-        .segment-card:nth-child(2) { border-top: 4px solid var(--success); }
-        .segment-card:nth-child(3) { border-top: 4px solid var(--purple); }
-        
-        /* Math Blocks */
-        .math-block {
-            text-align: center;
-            margin: 25px 0;
-            background-color: var(--slate-50);
-            border: 1px solid var(--slate-100);
-            padding: 20px;
-            border-radius: 8px;
+
+        .badge-blue { background: var(--primary-light); color: var(--primary-dark); }
+        .badge-green { background: var(--success-light); color: var(--success); }
+        .badge-purple { background: #f3e8ff; color: var(--purple); }
+
+        /* SWOT specific */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
+        .swot-s { border-top: 4px solid var(--success); }
+        .swot-w { border-top: 4px solid var(--danger); }
+        .swot-o { border-top: 4px solid var(--primary); }
+        .swot-t { border-top: 4px solid var(--warning); }
         
-        .math {
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-            font-weight: bold;
-            font-size: 1.4rem;
-            color: #1e3a8a;
-        }
-        
-        /* Architecture Flow Diagram */
-        .architecture-container {
-            background-color: #ffffff;
-            border: 1px solid var(--slate-100);
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 30px;
-        }
-        
-        .arch-layer {
-            border: 1px dashed var(--slate-400);
-            border-radius: 6px;
-            padding: 16px;
-            margin-bottom: 12px;
-            background-color: var(--slate-50);
-        }
-        
-        .arch-layer-title {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--slate-500);
+        .swot-header {
+            font-weight: 800;
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Modern Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--slate-200);
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        th {
+            background-color: var(--slate-50);
+            color: var(--slate-700);
+            font-weight: 700;
+            padding: 16px;
+            text-align: left;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--slate-200);
+        }
+        
+        td {
+            padding: 16px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--slate-100);
+            color: var(--slate-600);
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: var(--slate-50);
+        }
+        
+        td.highlight {
+            background-color: var(--primary-light);
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        th.highlight {
+            background-color: var(--primary);
+            color: white;
+            border-bottom: none;
+        }
+
+        /* Architecture Flow Diagram */
+        .arch-layer {
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .arch-layer:hover {
+            transform: scale(1.01);
+            border-color: var(--primary);
+        }
+        
+        .arch-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--slate-400);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
         }
         
         .arch-box {
-            background-color: #ffffff;
-            border: 1px solid var(--slate-400);
-            border-radius: 4px;
-            padding: 12px;
-            text-align: center;
+            display: inline-block;
+            background-color: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: 6px;
+            padding: 10px 20px;
+            margin: 5px;
             font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--slate-800);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            font-size: 0.9rem;
+            color: var(--slate-700);
         }
         
         .arch-arrow {
             text-align: center;
-            color: var(--slate-400);
-            font-size: 1.25rem;
-            margin: 8px 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 10px 0;
+            animation: float 2s infinite ease-in-out;
         }
-        
-        .client-box { border-left: 4px solid var(--primary); }
-        .network-box { border-left: 4px solid var(--success); }
-        .server-box { border-left: 4px solid #f59e0b; }
-        .db-box { border-left: 4px solid var(--danger); }
-        
+
         /* Code Blocks */
         pre {
             background-color: var(--slate-900);
             color: var(--slate-50);
             padding: 20px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             line-height: 1.6;
             overflow-x: auto;
-            margin: 15px 0 25px 0;
-            border: 1px solid var(--slate-800);
+            margin: 20px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
-        
+
         code {
-            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-family: 'JetBrains Mono', monospace;
             color: var(--danger);
-            background-color: var(--slate-100);
+            background-color: var(--danger-light);
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 0.9rem;
         }
-        
+
         pre code {
-            color: inherit;
+            color: #e2e8f0;
             background-color: transparent;
             padding: 0;
-            border-radius: 0;
-            font-size: inherit;
         }
-        
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(0px); }
+        }
+
         /* Footer */
-        .footer {
+        footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid var(--slate-100);
+            padding: 40px 20px;
+            background: var(--slate-900);
             color: var(--slate-400);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
+
+        /* Formula Box */
+        .formula-box {
+            background: var(--slate-50);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            border: 1px dashed var(--slate-300);
+            margin: 15px 0;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="top-navbar">
-        <div class="brand">Smart QR Order Platform Pitch Site</div>
-        <div class="badge">CONFIDENTIAL</div>
-    </div>
+    <!-- Fixed App Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-brand">
+            Smart QR Order <span>PITCH</span>
+        </a>
+        <div class="nav-links">
+            <a href="#overview">사업 개요</a>
+            <a href="#market">시장 분석</a>
+            <a href="#model">비즈니스 모델</a>
+            <a href="#tech">기술 아키텍처</a>
+        </div>
+        <div class="menu-toggle" onclick="alert('모바일 메뉴 준비중입니다.')">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Dynamic Hero Cover -->
+    <header class="hero">
+        <div class="hero-tag">Startup Investment & Development Guide</div>
+        <h1 class="hero-title">
+            Smart QR Order Platform<br>
+            <span style="font-size: 0.6em; font-weight: 500; color: #bae6fd;">End-to-End 가이드라인 및 통합 기획서</span>
+        </h1>
+        <p class="hero-subtitle">오프라인 F&B 비즈니스를 재정의하는 H/W 프리 스마트 오더 SaaS 솔루션</p>
+    </header>
 
     <div class="container">
-        <div class="document-body">
-            
-            <div class="cover-banner">
-                <div class="cover-tag">Startup Investment & Development Guide</div>
-                <h1 class="cover-title">
-                    Smart QR Order Platform
-                    <span>통합 기획서 및 사업계획서</span>
-                </h1>
-                <p class="cover-subtitle">- 스타트업 투자 유치 및 개발 구현을 위한 End-to-End 가이드라인 -</p>
-                
-                <div class="cover-meta-grid">
-                    <div class="meta-item">
-                        <span class="meta-label">문서 버전</span>
-                        <span class="meta-value">v1.0.0 (공식 배포판)</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">발행기관</span>
-                        <span class="meta-value">F&B 테크 파트너스 사업기획팀</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">최종 수정</span>
-                        <span class="meta-value">2026년 6월 8일</span>
-                    </div>
-                </div>
-            </div>
-
+        
+        <!-- Section 1 -->
+        <section id="overview" class="fade-section">
             <h1 class="section-title">1. 사업 개요 (Service Overview)</h1>
             
             <h2>1.1 서비스 비전 및 미션</h2>
-            <p>
-                <strong>비전 (Vision):</strong> "매장과 고객을 데이터로 연결하여, 오프라인 F&B 비즈니스의 디지털 전환(DX)을 선도하는 글로벌 No.1 SaaS 플랫폼"
-            </p>
-            <p>
-                <strong>미션 (Mission):</strong> "오프라인 매장의 운영 비용을 혁신적으로 절감하고, 초개인화된 맞춤형 주문 경험을 통해 가맹점의 매출 극대화와 고객 만족을 동시에 실현한다."
-            </p>
+            <div class="grid-3">
+                <div class="card" style="border-left: 4px solid var(--primary);">
+                    <h3>Vision</h3>
+                    <p>매장과 고객을 데이터로 연결하여, 오프라인 F&B 비즈니스의 <strong>디지털 전환(DX)</strong>을 선도하는 글로벌 No.1 SaaS 플랫폼</p>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--success);">
+                    <h3>Mission</h3>
+                    <p>오프라인 매장의 운영 비용을 혁신적으로 절감하고, 초개인화된 맞춤형 주문 경험을 통해 <strong>매출 극대화와 고객 만족</strong>을 실현</p>
+                </div>
+            </div>
 
-            <h2>1.2 시장의 문제점 및 기존 주문 방식의 한계</h2>
+            <h2>1.2 시장의 문제점 및 한계</h2>
             <ul>
-                <li><strong>높은 인건비 및 구인난:</strong> 국내 F&B 매장의 고정비 중 인건비 비중은 30%를 상회하고 있으며, 지속적인 최저임금 인상과 구인난으로 인해 매장 운영의 난이도가 극대화되고 있습니다.</li>
-                <li><strong>하드웨어 도입 및 유지보수 비용 (키오스크/테이블오더):</strong> 하드웨어 기반 테이블오더는 테이블당 과도한 초기 설치비용(대당 30~50만 원) 및 월 정액 렌탈료 부담이 큽니다. 고장 발생 시 현장 출동 AS 대기로 인한 주문 공백이 발생하며, 전력 소모 및 매장 인테리어 훼손 문제 역시 심각합니다.</li>
-                <li><strong>데이터 파편화 및 단절:</strong> 기존 포스(POS), 배달 앱, 테이블오더가 상호 단절 및 분리되어 있어, 고객의 실제 행동 데이터(주문 주기, 메뉴 탐색 패턴, 체류 시간 등)를 심층 분석하거나 마케팅에 즉각적으로 활용하기가 원천적으로 불가능합니다.</li>
+                <li><strong>높은 인건비 및 구인난:</strong> 국내 F&B 고정비 중 인건비 비중은 30% 상회, 구인난으로 매장 운영 난이도 극대화.</li>
+                <li><strong>하드웨어 도입/유지보수 비용:</strong> 테이블당 과도한 초기 설치비(30~50만 원) 및 렌탈료 부담, AS 대기로 인한 주문 공백 및 전력 소모.</li>
+                <li><strong>데이터 파편화:</strong> POS, 배달 앱, 테이블오더가 분리되어 고객 행동 데이터(주문 주기, 탐색 패턴 등) 마케팅 활용 불가.</li>
             </ul>
 
-            <h2>1.3 QR 주문 서비스의 필요성 및 기대효과</h2>
-            <ul>
-                <li><strong>Zero-Hardware (H/W 프리):</strong> 가맹점주는 별도의 전용 단말기 구매나 통신선 배선 공사 없이, 고유 QR 코드가 인쇄된 스티커 및 거치대만 테이블에 부착하면 즉시 서비스를 도입할 수 있습니다.</li>
-                <li><strong>비대면 즉시성:</strong> 고객은 별도의 모바일 앱 다운로드 및 번거로운 회원가입 절차 없이, 스마트폰 카메라 스캔만으로 웹(Web) 환경에서 3초 만에 메뉴 조회부터 결제까지 원스톱으로 완수합니다.</li>
-                <li><strong>효율성 극대화:</strong> 
-                    <ul>
-                        <li>매장 측면: 주문 접수 및 대면 결제 동선 소멸로 테이블 회전율이 25% 증가하며, 홀 서빙 인력 리소스를 40% 이상 절감할 수 있습니다.</li>
-                        <li>고객 측면: 피크타임 대기열 없는 즉각적인 주문이 가능하며, 더치페이 등 고도화된 편의 기능을 제공받습니다.</li>
-                    </ul>
-                </li>
-            </ul>
+            <h2>1.3 QR 주문 서비스의 필요성 (Solution)</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Zero-Hardware</h3>
+                    <p>단말기 구매나 배선 공사 없이 QR 코드 스티커 부착만으로 즉시 도입.</p>
+                </div>
+                <div class="card">
+                    <h3>비대면 즉시성</h3>
+                    <p>앱 다운로드 없이 스마트폰 카메라 스캔 3초 만에 메뉴 조회 및 결제 완수.</p>
+                </div>
+                <div class="card">
+                    <h3>효율성 극대화</h3>
+                    <p>테이블 회전율 25% 증가 및 홀 서빙 리소스 40% 절감.</p>
+                </div>
+            </div>
+        </section>
 
+        <!-- Section 2 -->
+        <section id="market" class="fade-section">
             <h1 class="section-title">2. 시장 분석 (Market Analysis)</h1>
             
-            <h2>2.1 시장 규모 및 동향</h2>
-            <p>
-                국내 푸드테크 및 스마트오더 시장은 연평균 18.5% 씩 고속 성장하여 2026년 기준 약 5조 원 규모에 육박할 것으로 전망됩니다. 특히 글로벌 비대면 주문 시장은 스마트폰 보급률의 포화와 SaaS형 라이트 솔루션 선호도 확대에 힘입어 2030년까지 CAGR 22.1% 성장이 예측되고 있습니다.
-            </p>
-            <p>
-                초기 시장을 지배하던 대형 키오스크는 매장 공간 점유, 매장 입구 줄 서기 병목 현상, 시각 장애인 및 고령층의 접근성 제약(디지털 소외) 등으로 인해 테이블 단위의 개인화된 주문 디바이스(테이블오더, QR코드)로 급격히 시프트하는 추세입니다.
-            </p>
-
-            <h2>2.2 경쟁 서비스 분석 (Competitor Analysis)</h2>
-            <div class="table-responsive">
+            <h2>2.1 경쟁 서비스 분석 (Competitor Matrix)</h2>
+            <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
                             <th>비교 항목</th>
-                            <th>테이블오더 (티오더, 메뉴잇)</th>
-                            <th>포스 연동형 (페이히어 등)</th>
-                            <th>플랫폼형 (네이버, 배민)</th>
-                            <th class="highlight-col">Smart QR Order (본 서비스)</th>
+                            <th>테이블오더 (기존)</th>
+                            <th>포스 연동형</th>
+                            <th>플랫폼형 (배민 등)</th>
+                            <th class="highlight">Smart QR Order</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>도입 비용</strong></td>
-                            <td>매우 높음 (대당 월 1~2만원 렌탈, 약정 필수)</td>
-                            <td>보통 (SaaS POS 월 구독 및 전용 패드 구매)</td>
-                            <td>낮음 (H/W 필요 없음)</td>
-                            <td class="highlight-col">매우 낮음 (Zero H/W, QR 출력으로 즉시 개통)</td>
+                            <td>대당 월 1~2만원 렌탈</td>
+                            <td>월 구독 및 패드 구매</td>
+                            <td>H/W 필요 없음</td>
+                            <td class="highlight">Zero H/W, 즉시 개통</td>
                         </tr>
                         <tr>
-                            <td><strong>설치 및 관리</strong></td>
-                            <td>복잡함 (배선 공사 필요, 상시 충전 관리)</td>
-                            <td>보통 (무선 태블릿 거치)</td>
+                            <td><strong>설치/관리</strong></td>
+                            <td>배선 공사, 충전 관리</td>
+                            <td>무선 태블릿 거치</td>
                             <td>간편함</td>
-                            <td class="highlight-col">매우 간편함 (인쇄형 QR 스티커 배포로 종료)</td>
+                            <td class="highlight">인쇄형 스티커 배포</td>
                         </tr>
                         <tr>
-                            <td><strong>수수료/구독료</strong></td>
-                            <td>월정액 테이블 렌탈료 부담 가중</td>
-                            <td>결제 수수료 및 POS 구독료</td>
-                            <td>주문 건당 높은 수수료 (2~6%)</td>
-                            <td class="highlight-col">합리적 구독형 (Tier별 차등) + PG 수수료</td>
+                            <td><strong>수수료</strong></td>
+                            <td>월정액 렌탈료 부담</td>
+                            <td>결제 수수료+POS 구독</td>
+                            <td>높은 수수료 (2~6%)</td>
+                            <td class="highlight">합리적 구독형+PG 수수료</td>
                         </tr>
                         <tr>
-                            <td><strong>프랜차이즈 관리</strong></td>
-                            <td>본사 통제 기능 미비, 지점별 개별 계약</td>
-                            <td>매장 매출 집계 위주 기능</td>
-                            <td>가맹점 DB 확보 제한, 플랫폼 의존성 심화</td>
-                            <td class="highlight-col">초고도화 통합 HQ 어드민 (일괄 통제 및 정책 분배)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>데이터 활용성</strong></td>
-                            <td>단순 주문 기능에 국한</td>
-                            <td>매출 통계 위주 제공</td>
-                            <td>네이버/배민 귀속 (점주 데이터 활용 불가)</td>
-                            <td class="highlight-col">가맹점 전용 CRM 및 AI 추천 엔진 자체 내장</td>
+                            <td><strong>데이터 활용</strong></td>
+                            <td>단순 주문 기능 국한</td>
+                            <td>매출 통계 위주</td>
+                            <td>플랫폼 귀속 (활용 불가)</td>
+                            <td class="highlight">독립 CRM 및 AI 추천 내장</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h2>2.3 SWOT 분석</h2>
+            <h2>2.2 SWOT 전략 분석</h2>
             <div class="swot-grid">
-                <div class="swot-box swot-s">
-                    <span class="swot-header">Strengths (강점)</span>
+                <div class="card swot-s">
+                    <span class="swot-header" style="color: var(--success)">S: Strengths (강점)</span>
                     <ul>
-                        <li>H/W 인프라 구축비 제로로 초저가 보급 가능</li>
-                        <li>프랜차이즈 및 다점포 최적화 다중 테넌트 구조</li>
-                        <li>가맹점 독립형 고객 분석 데이터(CRM) 확보</li>
+                        <li>H/W 인프라 제로로 초저가 보급</li>
+                        <li>다중 테넌트(프랜차이즈) 최적화</li>
+                        <li>가맹점 독립형 CRM 데이터 확보</li>
                     </ul>
                 </div>
-                <div class="swot-box swot-w">
-                    <span class="swot-header">Weaknesses (약점)</span>
+                <div class="card swot-w">
+                    <span class="swot-header" style="color: var(--danger)">W: Weaknesses (약점)</span>
                     <ul>
-                        <li>앱 수준의 고성능 퍼포먼스를 웹 뷰로 구현해야 함</li>
-                        <li>사용자의 QR 스캔 행동 유도를 위한 마케팅 필요</li>
-                        <li>초기에 POS 연동 인프라 확보의 높은 공수</li>
+                        <li>웹 뷰 퍼포먼스 최적화 난이도</li>
+                        <li>QR 스캔 행동 유도를 위한 마케팅</li>
+                        <li>초기 POS 연동 인프라 확보 공수</li>
                     </ul>
                 </div>
-                <div class="swot-box swot-o">
-                    <span class="swot-header">Opportunities (기회)</span>
+                <div class="card swot-o">
+                    <span class="swot-header" style="color: var(--primary)">O: Opportunities (기회)</span>
                     <ul>
-                        <li>고금리·고물가 시대 가맹점의 비용 절감 요구 증대</li>
-                        <li>오프라인 F&B 매장의 디지털 전환(DX) 가속화</li>
-                        <li>글로벌 시장(K-Food 해외 매장) 진출 기회 다양</li>
+                        <li>고물가 시대 가맹점 비용 절감 니즈</li>
+                        <li>오프라인 매장 디지털 전환 가속화</li>
+                        <li>K-Food 해외 매장 글로벌 진출 기회</li>
                     </ul>
                 </div>
-                <div class="swot-box swot-t">
-                    <span class="swot-header">Threats (위협)</span>
+                <div class="card swot-t">
+                    <span class="swot-header" style="color: var(--warning)">T: Threats (위협)</span>
                     <ul>
-                        <li>대형 배달 플랫폼의 QR 주문 시장 직접 진출 리스크</li>
-                        <li>간편결제(Apple Pay 등) 인프라 지원 지연 리스크</li>
-                        <li>과당 경쟁으로 인한 PG 결제 수수료 인하 압박</li>
+                        <li>대형 배달 플랫폼의 직접 진출 리스크</li>
+                        <li>간편결제 인프라 지원 지연 리스크</li>
+                        <li>경쟁으로 인한 PG 결제 수수료 인하</li>
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <h1 class="section-title">3. 고객 분석 (Customer Segmentation)</h1>
-            <div class="segment-grid">
-                <div class="segment-card">
-                    <h3>1단계: 1인 자영업자</h3>
-                    <p>개인 카페, 푸드트럭, 소형 식당</p>
-                    <span class="tag">극단적 비용 절감</span>
-                </div>
-                <div class="segment-card">
-                    <h3>2단계: 소규모 체인점</h3>
-                    <p>직영/가맹 2~10개 브랜드 매장</p>
-                    <span class="tag">매장간 효율성 비교</span>
-                </div>
-                <div class="segment-card">
-                    <h3>3단계: 대형 프랜차이즈</h3>
-                    <p>전국 10~1,000개 이상 매장 브랜드</p>
-                    <span class="tag">일괄 관리, 보안</span>
-                </div>
-            </div>
-
-            <h2>3.1 1단계: 1인 자영업자 (개인 카페, 개인 식당, 푸드트럭)</h2>
-            <p>
-                <strong>Pain Points:</strong> 1인 근무로 주문 접수, 조리, 서빙, 결제를 동시에 처리하면서 피크타임 시 고객 대기 지연 및 주문 유실이 대량 발생합니다. 초기 자본 부족으로 비싼 테이블오더 설치가 원천 불가합니다.
-            </p>
-            <p>
-                <strong>Solutions:</strong> 가장 저렴한 월 9,900원 Starter 플랜을 제공합니다. 고객 주문 즉시 주방으로 실시간 음성 및 알림톡이 전송되며, 선결제 기능으로 먹튀를 차단하고 홀 운영 효율을 2배 개선합니다.
-            </p>
-
-            <h2>3.2 2단계: 소규모 체인점 (지점 2~10개 미만)</h2>
-            <p>
-                <strong>Pain Points:</strong> 오너가 모든 매장에 상주할 수 없어 지점별 매출 현황, 인기 메뉴, 고객 반응의 비교 분석이 누락됩니다. 지점별 메뉴판 업데이트(품절, 가격 인상)를 일일이 유선이나 메신저로 처리하여 대응이 매우 느립니다.
-            </p>
-            <p>
-                <strong>Solutions:</strong> 멀티 매장 대시보드가 탑재된 Business 플랜을 제공합니다. 클릭 한 번으로 여러 매장의 가격과 메뉴 구성을 동기화하는 '그룹 일괄 관리 기능'을 제공하여 통합 관리를 지원합니다.
-            </p>
-
-            <h2>3.3 3단계: 대형 프랜차이즈 (매장 10개 이상 ~ 1,000개 이상)</h2>
-            <p>
-                <strong>Pain Points:</strong> 본사의 브랜드 아이덴티티(BI) 훼손 없는 공통 UI 디자인 템플릿 제어가 어려우며, 본사(HQ) 포탈과 가맹점(Store) 포탈 간의 권한 격리 및 재무 정산 구조가 매우 복잡합니다. 기존 ERP, 레거시 POS, CRM과의 유연한 API 연동이 필수적입니다.
-            </p>
-            <p>
-                <strong>Solutions:</strong> 커스텀 테마 설정 기능이 포함된 Enterprise 플랜을 제안합니다. 본사 MD용 메뉴 일괄 통제 시스템, 정산 분할 로직, 안정적인 Open API 연동 레이어를 제공합니다.
-            </p>
-
-            <h1 class="section-title">4. 비즈니스 모델 설계 (Business Model)</h1>
+        <!-- Section 3 -->
+        <section id="model" class="fade-section">
+            <h1 class="section-title">3. 비즈니스 모델 & 재무 (Business Model)</h1>
             
-            <h2>4.1 SaaS 구독 모델 (Monthly Subscription Tiers)</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>요금제 플랜</th>
-                            <th>타겟 그룹</th>
-                            <th>월 구독료</th>
-                            <th>주요 기능 범위</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Starter</strong></td>
-                            <td>1인 매장, 소상공인</td>
-                            <td>9,900원</td>
-                            <td>기본 모바일 메뉴판, 기본 QR 주문/결제, 주방 태블릿 웹, 실시간 기본 통계</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Business</strong></td>
-                            <td>일반 음식점, 다점포 점주</td>
-                            <td>49,000원</td>
-                            <td>Starter 모든 기능 + 멀티 매장 관리, AI 추천 메뉴판, 실시간 재고 연동, CRM 스탬프 쿠폰 발행</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Enterprise</strong></td>
-                            <td>프랜차이즈 본사, 대형 매장</td>
-                            <td>협의 (맞춤 견적)</td>
-                            <td>Business 모든 기능 + 본사 통합 어드민, ERP/POS 레거시 연동, BI 커스텀 테마, 전담 TAM 기술 지원</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Starter Plan</h3>
+                    <p>월 <strong>9,900원</strong></p>
+                    <p style="font-size: 0.85rem;">1인 매장 최적화. 기본 QR 주문, 주방 태블릿 웹, 기본 통계 제공.</p>
+                </div>
+                <div class="card">
+                    <h3>Business Plan</h3>
+                    <p>월 <strong>49,000원</strong></p>
+                    <p style="font-size: 0.85rem;">일반 음식점. 멀티 매장 관리, AI 추천, 재고 연동, CRM 스탬프 탑재.</p>
+                </div>
+                <div class="card">
+                    <h3>Enterprise Plan</h3>
+                    <p><strong>Custom</strong> (협의)</p>
+                    <p style="font-size: 0.85rem;">프랜차이즈 본사. 통합 어드민, 기존 ERP/POS 연동, 커스텀 테마 지원.</p>
+                </div>
             </div>
 
-            <h2>4.2 결제 수수료 및 부가서비스 모델</h2>
-            <ul>
-                <li><strong>결제 수수료 셰어:</strong> PG 연동을 통한 온라인 간편결제 건당 결제 수수료의 일부를 카드사/PG사로부터 리베이트 수취하여 0.1~0.3% 수준의 순마진을 지속 확보합니다.</li>
-                <li><strong>부가서비스 (Value-Added Services):</strong>
-                    <ul>
-                        <li>알림톡 및 마케팅 메시지 자동 발송: 건당 발송료 부과 (LMS/SMS 실비 + 마크업 마진 15%).</li>
-                        <li>로컬 타겟 광고 패키지: 모바일 메뉴판 하단 영역에 지역 매장 제휴 광고 노출 및 광고료 수취.</li>
-                        <li>AI 상권 및 매출 예측 레포트: 월 19,000원 추가 시 제공하는 데이터 심화 구독 솔루션.</li>
-                    </ul>
-                </li>
-            </ul>
+            <h2>유닛 이코노믹스 핵심 지표</h2>
+            <p>목표 CAC를 300,000원 이하로 유지하여 <strong>LTV/CAC 비율을 6.6배 이상</strong>의 건전한 상태로 스케일업합니다.</p>
+            <div class="formula-box">
+                LTV = (ARPU × Margin) / Churn Rate = 2,000,000원
+            </div>
+        </section>
 
-            <h2>4.3 유닛 이코노믹스 및 재무 분석</h2>
-            <p><strong>LTV (고객 생애 가치) 계산 공식:</strong></p>
-            <div class="math-block">
-                <span class="math">LTV = (ARPU &times; Margin) / Churn Rate</span>
-            </div>
-            <p>
-                가정: 평균 구독 및 수수료 기여 ARPU = 50,000원, 매출총이익률 Margin = 80%, 월간 이탈률 Churn Rate = 2% 일 때,
-            </p>
-            <div class="math-block">
-                <span class="math">LTV = (50,000 &times; 0.8) / 0.02 = 2,000,000원</span>
-            </div>
+        <!-- Section 4 -->
+        <section id="tech" class="fade-section">
+            <h1 class="section-title">4. 시스템 아키텍처 및 데이터 흐름</h1>
             
-            <p><strong>CAC (고객 획득 비용) 관리 지표:</strong></p>
-            <div class="math-block">
-                <span class="math">CAC = 총 마케팅 및 영업 비용 / 신규 유치 가맹점 수</span>
-            </div>
-            <p>
-                목표 CAC를 300,000원 이하로 유지함으로써 LTV/CAC 비율을 6.6&times; 수준으로 탄탄하게 관리하여 성장성과 재무 건전성을 동시 확보합니다.
-            </p>
-
-            <h1 class="section-title">5. 시스템 아키텍처 및 데이터 흐름</h1>
-            
-            <h2>5.1 데이터 및 서비스 흐름도 (Data & Service Flow)</h2>
-            <div class="architecture-container">
-                <div class="arch-layer">
-                    <div class="arch-layer-title">Frontend Layer (Client)</div>
-                    <div class="arch-box client-box">고객 모바일 웹 앱 (Next.js SSR / Tailwind)</div>
+            <div style="background: var(--slate-50); padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                <div class="arch-layer" style="border-left: 4px solid var(--primary);">
+                    <div class="arch-title">Frontend Layer (Client)</div>
+                    <div class="arch-box">고객 모바일 웹 앱 (Next.js SSR / Tailwind)</div>
                 </div>
-                <div class="arch-arrow">▼ (QR 스캔 후 CloudFront 라우팅)</div>
                 
-                <div class="arch-layer">
-                    <div class="arch-layer-title">Network & Edge Layer</div>
-                    <div class="arch-box network-box">AWS CloudFront (Edge CDN) & ALB Load Balancer</div>
-                </div>
-                <div class="arch-arrow">▼ (API 트래픽 분산 처리)</div>
-                
-                <div class="arch-layer">
-                    <div class="arch-layer-title">Core Backend Layer</div>
-                    <div class="arch-box server-box">NestJS API Server (오토스케일링 적용 가상 클러스터)</div>
-                </div>
-                <div class="arch-arrow">▼ (비동기 이벤트 발행 및 데이터 영속화)</div>
-                
-                <div class="arch-layer">
-                    <div class="arch-layer-title">Data Storage & Event Pipeline</div>
-                    <div class="arch-box db-box" style="margin-bottom:8px;">PostgreSQL Main DB (트랜잭션 ACID 보장)</div>
-                    <div class="arch-box network-box" style="margin-bottom:8px;">Redis Cache (메뉴 정보 캐싱 및 실시간 세션 관리)</div>
-                    <div class="arch-box server-box">Apache Kafka (이벤트 버스를 통한 비동기 전파)</div>
-                </div>
                 <div class="arch-arrow">▼</div>
                 
-                <div class="arch-layer">
-                    <div class="arch-layer-title">External & Consumer Layer</div>
-                    <div class="arch-box client-box" style="margin-bottom:5px;">가맹점 주방 태블릿 포탈 (WebSockets 실시간 푸시)</div>
-                    <div class="arch-box network-box" style="margin-bottom:5px;">통합 PG사 연동 계층 (Toss Pay, Kakao Pay, Naver Pay)</div>
-                    <div class="arch-box server-box">AI 분석 엔진 (Python 기반 실시간 추천 및 시계열 수요 예측)</div>
+                <div class="arch-layer" style="border-left: 4px solid var(--success);">
+                    <div class="arch-title">Network & Edge Layer</div>
+                    <div class="arch-box">AWS CloudFront CDN</div>
+                    <div class="arch-box">ALB Load Balancer</div>
+                </div>
+                
+                <div class="arch-arrow">▼</div>
+                
+                <div class="arch-layer" style="border-left: 4px solid var(--warning);">
+                    <div class="arch-title">Core Backend Layer</div>
+                    <div class="arch-box">NestJS API Server (오토스케일링 클러스터)</div>
+                    <div class="arch-box">Apache Kafka (이벤트 버스)</div>
+                </div>
+                
+                <div class="arch-arrow">▼</div>
+                
+                <div class="arch-layer" style="border-left: 4px solid var(--danger);">
+                    <div class="arch-title">Data Storage Layer</div>
+                    <div class="arch-box">PostgreSQL (Main DB)</div>
+                    <div class="arch-box">Redis Cache (캐싱 및 실시간 세션)</div>
                 </div>
             </div>
 
-            <h1 class="section-title">6. 핵심 기능 정의 (Feature Specification)</h1>
-            <h2>6.1 사용자(고객) 기능 세부 명세</h2>
-            <ul>
-                <li><strong>QR-01 (즉시 진입):</strong> 별도 모바일 앱 설치 없이 QR 코드 스캔 시 암호화 테이블 정보가 담긴 파라미터 URL을 기반으로 즉시 브라우저 진입을 마운트합니다.</li>
-                <li><strong>ORD-01 (더치페이형 스마트 장바구니):</strong> Websocket 프로토콜 기반으로 동일 테이블에 착석한 여러 명의 사용자가 장바구니 내역을 실시간 편집 및 공유할 수 있습니다.</li>
-                <li><strong>PAY-01 (멀티 PG 간편결제):</strong> 주요 결제 플랫폼 API(토스, 네이버, 카카오, 애플페이)를 단일화 결제 레이어로 통합 지원합니다.</li>
-            </ul>
-
-            <h1 class="section-title">9. 데이터베이스 설계 (ERD & Schema)</h1>
-            <h2>9.2 주요 테이블 스키마 정의 (DDL)</h2>
-            <pre><code>-- 1. Brands (브랜드 및 본사 정보)
-CREATE TABLE Brands (
-    brand_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    brand_name VARCHAR(100) NOT NULL,
-    ceo_name VARCHAR(50) NOT NULL,
-    corporate_no VARCHAR(20) UNIQUE NOT NULL,
+            <h2>주요 DDL 스키마 (데이터베이스 설계)</h2>
+            <pre><code>-- 1. Orders (주문 정보 마스터 테이블)
+CREATE TABLE Orders (
+    order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    store_id UUID NOT NULL REFERENCES Stores(store_id) ON DELETE CASCADE,
+    table_no VARCHAR(20) NOT NULL,
+    order_status VARCHAR(30) NOT NULL DEFAULT 'PENDING', 
+    total_amount DECIMAL(12, 2) NOT NULL DEFAULT 0.00,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Stores (개별 가맹 매장 정보)
-CREATE TABLE Stores (
-    store_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    brand_id UUID REFERENCES Brands(brand_id) ON DELETE SET NULL,
-    store_name VARCHAR(100) NOT NULL,
-    store_code VARCHAR(50) UNIQUE NOT NULL,
-    status VARCHAR(20) DEFAULT 'ACTIVE',
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+-- 2. Payments (결제 승인 내역 테이블)
+CREATE TABLE Payments (
+    payment_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id UUID NOT NULL UNIQUE REFERENCES Orders(order_id),
+    pg_transaction_id VARCHAR(100) UNIQUE,
+    payment_method VARCHAR(50) NOT NULL,
+    payment_status VARCHAR(30) NOT NULL DEFAULT 'READY',
+    paid_amount DECIMAL(12, 2) NOT NULL
 );</code></pre>
+        </section>
 
-            <h1 class="section-title">부록. 개발 마일스톤 및 일정표 (WBS)</h1>
-            <div class="table-responsive">
+        <!-- Section 5 -->
+        <section id="roadmap" class="fade-section">
+            <h1 class="section-title">5. 개발 마일스톤 (WBS)</h1>
+            <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>세부 태스크명 (Task Name)</th>
+                            <th>태스크 명</th>
                             <th>W1-W2</th>
                             <th>W3-W4</th>
                             <th>W5-W6</th>
@@ -804,69 +752,81 @@ CREATE TABLE Stores (
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1. 요구사항 기획 및 데이터 모델링</td>
-                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
+                            <td>1. 요구사항 기획 & DB 모델링</td>
+                            <td class="highlight" style="border-radius: 4px; text-align: center;">기획 완료</td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>2. Cloud 인프라 구축</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td class="highlight" style="text-align: center;">AWS 세팅</td>
+                            <td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>3. Backend API Core 개발</td>
+                            <td></td><td></td>
+                            <td class="highlight" style="text-align: center;">NestJS 연동</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>4. Frontend UI 개발</td>
+                            <td></td><td></td><td></td>
+                            <td class="highlight" style="text-align: center;">Next.js 구현</td>
+                            <td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>5. PG 연동 및 테스트</td>
+                            <td></td><td></td><td></td><td></td>
+                            <td class="highlight" style="text-align: center;">결제 통합</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>2. Cloud 인프라 구축 및 초기화</td>
-                            <td></td>
-                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3. Backend API 및 Core 기능 개발</td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>4. Frontend Next.js UI 마운트</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>5. PG사 통합 결제 연동 및 테스트</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>6. 시범 점포 테스트 및 파일럿 런칭</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: var(--success); color: white; text-align: center; font-weight: bold;">런칭</td>
+                            <td>6. 시범 점포 런칭 (Beta)</td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                            <td style="background: var(--success); color: white; text-align: center; font-weight: bold; border-radius: 4px;">런칭</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </section>
 
-            <div class="footer">
-                &copy; 2026 Smart QR Order Platform Project. All Rights Reserved. Confidential Document.
-            </div>
-
-        </div>
     </div>
 
+    <footer>
+        &copy; 2026 Smart QR Order Platform Project. All Rights Reserved.<br>
+        <span style="font-size: 0.8rem; margin-top: 10px; display: block;">CONFIDENTIAL - 외부 유출을 금합니다.</span>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Fade-In Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-section').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
