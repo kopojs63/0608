@@ -1,1 +1,1875 @@
 
+Gemini와의 대화
+$$통합 기획서 및 사업계획서$$
+
+Smart QR Order Platform
+
+- 스타트업 투자 유치 및 개발 구현을 위한 End-to-End 가이드라인 -
+
+1. 사업 개요 (Service Overview)
+
+1.1 서비스 비전 및 미션
+
+비전 (Vision): "매장과 고객을 데이터로 연결하여, 오프라인 F&B 비즈니스의 디지털 전환(DX)을 선도하는 글로벌 No.1 SaaS 플랫폼"
+
+미션 (Mission): "오프라인 매장의 운영 비용을 혁신적으로 절감하고, 초개인화된 맞춤형 주문 경험을 통해 가맹점의 매출 극대화와 고객 만족을 동시에 실현한다."
+
+1.2 시장의 문제점 및 기존 주문 방식의 한계
+
+높은 인건비 및 구인난: F&B 매장의 고정비 중 인건비 비중은 $30%$를 상회하며, 지속적인 최저임금 인상과 구인난으로 매장 운영 난이도가 극대화됨.
+
+하드웨어 도입 및 유지보수 비용 (키오스크/테이블오더):
+
+하드웨어 기반 테이블오더는 테이블당 설치비용(대당 30~50만 원) 및 월 렌탈료 부담이 큼.
+
+고장 발생 시 현장 출동 AS 대기로 인한 주문 공백 및 전력 소모, 매장 인테리어 훼손 문제 발생.
+
+데이터 파편화 및 단절: 포스(POS), 배달 앱, 테이블오더가 분리되어 고객의 행동 데이터(주문 주기, 메뉴 탐색 패턴, 체류 시간 등)를 수집하거나 마케팅에 활용하기 어려움.
+
+1.3 QR 주문 서비스의 필요성 및 기대효과
+
+Zero-Hardware (H/W 프리): 가맹점주는 별도의 전용 단말기 구매나 설치 공사 없이, 고유 QR 코드가 인쇄된 스티커/거치대만 테이블에 부착하면 즉시 도입 가능.
+
+비대면 즉시성: 고객은 별도의 모바일 앱 다운로드 없이, 스마트폰 카메라 스캔만으로 웹(Web) 환경에서 3초 만에 메뉴 조회부터 결제까지 완수.
+
+효율성 극대화:
+
+매장 측면: 주문 접수 및 결제 동선 소멸로 테이블 회전율 $25\%$ 증가, 서빙 인력 리소스 $40\%$ 절감.
+
+고객 측면: 대기열 없는 즉각적인 주문 및 더치페이 등 고도화된 편의 기능 제공.
+
+2. 시장 분석 (Market Analysis)
+
+2.1 시장 규모 및 동향
+
+국내외 시장 규모: 국내 푸드테크 및 스마트오더 시장은 연평균 $18.5\%$ 성장하여 2026년 기준 약 5조 원 규모에 육박할 것으로 전망됨. 글로벌 비대면 주문 시장은 스마트폰 보급률 상승과 SaaS형 솔루션 선호도 확대로 인해 2030년까지 CAGR $22.1\%$ 성장이 예측됨.
+
+키오스크 시장의 변화: 초기 시장을 지배하던 대형 키오스크는 공간 점유, 줄 서기 병목 현상, 시각 장애인 및 고령층의 접근성 제약 등으로 인해 테이블 단위의 개인화된 주문 디바이스(테이블오더, QR코드)로 급격히 시프트하는 추세임.
+
+2.2 경쟁 서비스 분석 (Competitor Analysis)
+
+|
+
+| 비교 항목 | 테이블오더 (티오더, 메뉴잇) | 포스 연동형 (페이히어, 포스뱅크) | 플랫폼형 (네이버 주문, 배달의민족) | Smart QR Order (본 서비스) |
+
+| 도입 비용 | 매우 높음 (대당 월 1~2만원 렌탈, 약정 필수) | 보통 (SaaS POS 월 구독 및 전용 패드 구매) | 낮음 (H/W 필요 없음) | 매우 낮음 (Zero H/W, QR 출력으로 즉시 개통) |
+
+| 설치 및 관리 | 복잡함 (배선 공사 필요, 상시 충전 관리) | 보통 (무선 태블릿 거치) | 간편함 | 매우 간편함 (인쇄형 QR 스티커 배포) |
+
+| 수수료 및 구독료 | 월정액 테이블 렌탈료 부담 | 결제 수수료 및 POS 구독료 | 주문 건당 높은 수수료 ($2\sim6\%$) | 합리적 구독형 (Tier별 차등) + PG 수수료 |
+
+| 프랜차이즈 관리 | 본사 통제 기능 미비, 지점별 개별 계약 | 매장 매출 집계 위주 | 가맹점 DB 확보 제한적, 플랫폼 의존성 높음 | 초고도화 통합 HQ 어드민 (일괄 통제 및 정책 분배) |
+
+| 데이터 활용성 | 단순 주문 기능에 국한 | 매출 통계 위주 | 네이버/배민 귀속 (점주 데이터 활용 불가능) | 가맹점 전용 CRM 및 AI 추천 엔진 자체 제공 |
+
+2.3 SWOT 분석
+
+[ Strengths ] [ Weaknesses ]
+
+┌─────────────────────────────────────────────────┐ ┌─────────────────────────────────────────────────┐
+
+│ • H/W 인프라 구축비 제로로 초저가 보급 가능 │ │ • 앱 수준의 퍼포먼스를 웹 뷰로 구현해야 함 │
+
+│ • 프랜차이즈 및 다점포 최적화 다중 테넌트 구조 │ │ • 사용자의 QR 스캔 행동 유도를 위한 마케팅 필요│
+
+│ • 가맹점 독립형 고객 분석 데이터(CRM) 확보 │ │ • 초기에 POS 연동 인프라 확보의 높은 공수 │
+
+└─────────────────────────────────────────────────┘ └─────────────────────────────────────────────────┘
+
+[ Opportunities ] [ Threats ]
+
+┌─────────────────────────────────────────────────┐ ┌─────────────────────────────────────────────────┐
+
+│ • 고금리·고물가 시대 가맹점의 비용 절감 요구 │ │ • 대형 배달 플랫폼의 QR 주문 시장 직접 진출 │
+
+│ • 오프라인 F&B 매장의 디지털 전환(DX) 가속화 │ │ • 간편결제(Apple Pay 등) 인프라 지원 지연 리스크│
+
+│ • 글로벌 시장(K-Food 해외 매장) 진출 기회 다양 │ │ • 과당 경쟁으로 인한 PG 결제 수수료 인하 압박 │
+
+└─────────────────────────────────────────────────┘ └─────────────────────────────────────────────────┘
+
+3. 고객 분석 (Customer Segmentation)
+
+[1단계: 1인 자영업자] [2단계: 소규모 체인점] [3단계: 대형 프랜차이즈]
+
+┌───────────────────────────────────┐ ┌───────────────────────────────────┐ ┌───────────────────────────────────┐
+
+│ • 대상: 개인 카페, 푸드트럭, 식당 │ │ • 대상: 직영/가맹 2~10개 브랜드 │ │ • 대상: 전국 10~1000개 매장 브랜드│
+
+│ • 주요 키워드: 극단적 비용 절감 │ │ • 주요 키워드: 매장간 효율성 비교 │ │ • 주요 키워드: 일괄 관리, 보안 │
+
+└───────────────────────────────────┘ └───────────────────────────────────┘ └───────────────────────────────────┘
+
+3.1 1단계: 1인 자영업자 (개인 카페, 개인 식당, 푸드트럭)
+
+Pain Points:
+
+1인 근무로 주문 접수, 조리, 서빙, 결제를 동시에 처리하면서 피크타임 시 주문 유실 대량 발생.
+
+초기 자본 부족으로 비싼 테이블오더 설치 불가.
+
+Solutions:
+
+가장 저렴한 월 9,900원 Starter 플랜 제공.
+
+고객이 주문 시 주방으로 실시간 음성 및 알림톡 전송, 선결제 기능으로 먹튀 방지 및 홀 운영 효율 2배 개선.
+
+3.2 2단계: 소규모 체인점 (지점 2~10개 미만)
+
+Pain Points:
+
+오너가 모든 매장에 상주할 수 없어 지점별 매출 현황, 인기 메뉴, 고객 반응의 비교 분석이 안 됨.
+
+지점별 메뉴판 업데이트(품절, 가격 인상)를 일일이 전화나 메신저로 요청하여 대응이 느림.
+
+Solutions:
+
+멀티 매장 대시보드가 탑재된 Business 플랜 제공.
+
+한 번의 클릭으로 여러 매장의 가격과 메뉴 구성을 동기화하는 '그룹 일괄 관리 기능' 제공.
+
+3.3 3단계: 대형 프랜차이즈 (매장 10개 이상 ~ 1,000개 이상)
+
+Pain Points:
+
+본사의 브랜드 아이덴티티(BI) 훼손 없는 공통 UI 디자인 템플릿 제어가 어려움.
+
+본사(HQ) 포탈과 가맹점(Store) 포탈 간의 권한 격리 및 재무 정산 구조가 매우 복잡함.
+
+ERP, 기존 레거시 POS, CRM과의 API 연동이 필수적이나 유연성이 떨어짐.
+
+Solutions:
+
+커스텀 테마 설정 기능이 포함된 Enterprise 플랜 제공.
+
+본사 MD용 메뉴 일괄 통제 시스템, 정산 분할 로직, Open API 연동 레이어 제공.
+
+4. 비즈니스 모델 설계 (Business Model)
+
+4.1 SaaS 구독 모델 (Monthly Subscription Tiers)
+
+| 요금제 플랜 | 타겟 그룹 | 월 구독료 | 주요 기능 범위 |
+
+| Starter | 1인 매장, 소상공인 | 9,900원 | 기본 모바일 메뉴판, 기본 QR 주문/결제, 주방 태블릿 웹, 실시간 통계 |
+
+| Business | 일반 음식점, 다점포 점주 | 49,000원 | Starter 모든 기능 + 멀티 매장 관리, AI 추천 메뉴판, 실시간 재고 연동, CRM 스탬프 쿠폰 발행 |
+
+| Enterprise | 프랜차이즈 본사, 대형 매장 | 협의 (맞춤 견적) | Business 모든 기능 + 본사 통합 어드민, ERP/POS 레거시 연동, BI 커스텀 테마, 전담 TAM 기술 지원 |
+
+4.2 결제 수수료 및 부가서비스 모델
+
+결제 수수료 셰어: PG 연동을 통한 온라인 간편결제 건당 결제 수수료의 일부를 카드사/PG사로부터 리베이트 수취 ($0.1\sim0.3\%$ 마진 확보).
+
+부가서비스 (Value-Added Services):
+
+알림톡 및 마케팅 메시지 자동 발송: 건당 발송료 부과 (LMS/SMS 실비 + 마크업 마진 $15\%$).
+
+로컬 타겟 광고 패키지: 모바일 메뉴판 하단 영역에 지역 매장 제휴 광고 노출 및 광고료 수취.
+
+AI 상권 및 매출 예측 레포트: 월 19,000원 추가 시 제공하는 데이터 심화 구독 솔루션.
+
+4.3 유닛 이코노믹스 및 재무 분석
+
+LTV (고객 생애 가치) 계산 공식:
+
+$$LTV = \frac{ARPU \times Margin}{Churn\ Rate}$$
+
+가정: 평균 구독 및 수수료 기여 $ARPU = 50,000\text{원}$, 매출총이익률 $Margin = 80\%$, 월간 이탈률 $Churn\ Rate = 2\%$ 일 때,
+
+$$LTV = \frac{50,000 \times 0.8}{0.02} = 2,000,000\text{원}$$
+
+CAC (고객 획득 비용) 계산 공식:
+
+$$CAC = \frac{\text{총 마케팅 및 영업 비용}}{\text{신규 유치 가맹점 수}}$$
+
+목표 $CAC = 300,000\text{원}$ 이하 유지 (LTV/CAC 비율을 $6.6\times$ 수준으로 관리하여 성장성과 건전성 확보).
+
+BEP (손익분기점) 분석:
+
+$$BEP\text{ (가맹점 수)} = \frac{\text{고정비 (개발진 급여, 인프라 비용 등)}}{\text{가맹점당 평균 마진 (ARPU - 가변비)}}$$
+
+월 고정 운영비 $50,000,000\text{원}$ 기준, 평균 가맹점당 순기여 마진이 월 $40,000\text{원}$일 때 유효 가맹점 1,250개 확보 시 BEP 달성.
+
+5. 시스템 아키텍처 및 데이터 흐름
+
+5.1 데이터 및 서비스 흐름도 (Data & Service Flow)
+
+[고객 (Customer Web App)] ──(QR 스캔 및 웹 진입)──> [AWS Cloud Front (Edge CDN)]
+
+│
+
+(메뉴 확인 및 주문 접수)
+
+│
+
+▼
+
+[NestJS API Server (Load Balanced)] ──(캐싱 조회)──> [Redis (Menu/Session Cache)]
+
+│ │
+
+(주문 이벤트 발행) │ (메뉴 정보 즉각 로드)
+
+│ ▼
+
+├───> [PostgreSQL DB (Main DB)] ───────────────┘
+
+│
+
+├───> [Apache Kafka (Event Bus)]
+
+│ │
+
+│ ├───> [매장 알림 서비스] ───> [가맹점 주방 태블릿 (Web Sockets)]
+
+│ │
+
+│ └───> [AI 분석 엔진 (Python)] ───> [Real-time Analytics]
+
+│
+
+└───> [PG사 연동] ───> [Toss / Kakao / Naver Pay (Payment Gateway)]
+
+5.2 시스템 아키텍처 상세 구조
+
+Frontend Layer: Next.js (Page Router/App Router 병행) 기반의 SSR/ISR 구조를 설계하여 저사양 스마트폰에서도 초고속(LCP 1.2초 미만) 모바일 메뉴판 구동 보장.
+
+Backend Layer: NestJS 프레임워크 기반의 마이크로서비스 아키텍처(MSA) 구조. 가맹점 급증에 유연하게 대응하도록 오토스케일링 적용.
+
+Data Tier: transactional 일관성이 보장되는 PostgreSQL을 메인 DB로 사용하고, 메뉴판 스키마 및 주문 임시 바스켓 정보는 초당 수만 건의 동시 처리를 위해 Redis 캐싱 적용. 주방 알림 및 주문 전파는 Socket.io 기반 실시간 웹소켓 통신 프로토콜 사용.
+
+6. 핵심 기능 정의 (Feature Specification)
+
+6.1 사용자(고객) 기능 세부 명세
+
+QR-01 (즉시 진입): Native App 설치나 회원가입 절차 없이, QR 카메라 스캔 시 해당 테이블 ID 및 매장 ID가 파라미터로 주입된 URL로 즉각 렌더링.
+
+ORD-01 (더치페이형 스마트 장바구니): 테이블에 앉은 복수의 사용자가 동일 장바구니를 실시간 공유 및 공동 편집할 수 있는 분산 장바구니 기능 (Websocket 기반 동기화).
+
+PAY-01 (멀티 PG 간편결제): 토스페이먼츠, 카카오페이, 네이버페이, Apple Pay, 신용카드 정기결제 등 국내외 최다 결제 수단 탑재 및 1초 간편인증 결제 지원.
+
+REV-01 (영수증 인증 기반 리뷰): 실시간 주문 및 결제 완료가 증빙된 고객만 남길 수 있는 어뷰징 제로 리뷰 시스템 구축.
+
+6.2 매장(점주) 기능 세부 명세
+
+MNG-01 (리얼타임 메뉴 및 품절 관리): 원재료 소진 시 주방 포탈에서 '품절' 버튼 클릭 즉시 고객 모바일 화면에서 품절 상태로 실시간 업데이트.
+
+MNG-02 (지능형 재고 추적): 등록된 메뉴별 원재료 매핑 데이터를 바탕으로 주문 접수 시 자동으로 재고가 차감되고, 안전 재고 이하 도달 시 점주에게 푸시 알림 전송.
+
+MNG-03 (일일 자동 정산): 당일 발생한 매출 정보 및 PG 결제 대행 수수료, 구독료를 자동 차감하여 정산 예정 금액 및 일자를 리포트 형태로 대시보드 시각화.
+
+6.3 프랜차이즈 본사(HQ) 기능 세부 명세
+
+HQ-01 (글로벌 카탈로그 일괄 업데이트): 전체 가맹점 또는 특정 지역(예: 서울권역) 가맹점들의 메뉴 레이아웃, 가격 정책, 할인율 프로모션을 본사 어드민에서 일괄 제어 및 변경 예약 기능 제공.
+
+HQ-02 (다차원 매출 비교 분석): 매장별, 지역별, 시간대별, 메뉴별 매출 기여도를 분석하여 경영진 의사결정 속도를 높여주는 시각화 차트 제공.
+
+HQ-03 (로열티 및 수수료 자동 정산 정합성): 가맹 계약 형태(고정 로열티율, 매출 비례 정산 등)에 맞게 정산 명세서를 자동 발행하는 빌링 시스템 탑재.
+
+7. 사용자 시나리오 및 UX Flow
+
+7.1 고객 여정 지도 (Customer Journey Map)
+
+[매장 입장/테이블 착석] ──> [QR 코드 인식] ──> [초고속 웹 메뉴 조회] ──> [메뉴 탐색 및 장바구니 담기]
+
+│
+
+[식사 유도 & 서빙 완료] <── [주방 자동 즉시 조리] <── [간편 결제 승인] <─── [더치페이 설정 및 주문]
+
+7.2 UX Flow 다이어그램
+
+┌────────────────────────┐
+
+│ 고객 테이블 착석 │
+
+└───────────┬────────────┘
+
+│
+
+▼
+
+┌────────────────────────┐
+
+│ QR 코드 스캔 │
+
+└───────────┬────────────┘
+
+│
+
+├──────────────────────────┐ (인증 실패/비정상 경로)
+
+▼ ▼
+
+┌────────────────────────┐ ┌───────────────────┐
+
+│ 모바일 웹 홈 뷰 │ │ 에러 화면 │
+
+└───────────┬────────────┘ └───────────────────┘
+
+│
+
+▼
+
+┌────────────────────────┐
+
+│ 카테고리/메뉴 상세 뷰 │
+
+└───────────┬────────────┘
+
+│
+
+▼
+
+┌────────────────────────┐
+
+│ 장바구니 (옵션/수량) │
+
+└───────────┬────────────┘
+
+│
+
+┌────────────────┴────────────────┐
+
+▼ (단독 결제) ▼ (더치페이/분할 결제)
+
+┌────────────────────────┐ ┌────────────────────────┐
+
+│ PG 즉시 간편결제 │ │ 더치페이 금액 분할 지정 │
+
+└───────────┬────────────┘ └───────────┬────────────┘
+
+│ │
+
+└────────────────┬────────────────┘
+
+│
+
+▼
+
+┌────────────────────────┐
+
+│ 주문 완료 페이지 │───(실시간 주문 현황 트래킹)
+
+└────────────────────────┘
+
+8. 관리자 시스템 및 권한 설계 (Admin System Role Matrix)
+
+시스템 보안과 프랜차이즈 구조 지원을 위해 다층 권한 통제 모델(Multi-tenant RBAC)을 설계합니다.
+
+| 권한 레벨 (Role) | 주요 대상 | 허용 기능 및 접근 범위 | 제한 사항 |
+
+| Super Admin | 플랫폼 운영사 관리자 | 전체 가맹점 정보 조회, 요금제 가입 승인, PG 연동 설정, 원격 수수료율 조정, 전체 시스템 로그 모니터링, 데이터 추출 | 보안상 실제 결제 승인 원천 데이터 및 가맹점 내부 영업 비밀 데이터 암호화 보관 |
+
+| Franchise Admin | 프랜차이즈 본사 담당자 | 소속 브랜드 모든 가맹점 조회, 전체 공통 메뉴 마스터 관리, 대형 프로모션 기획, 가맹점 매출 총량 정산, 지점 직원 권한 승인 | 타 프랜차이즈 본사 데이터 접근 원천 불가 |
+
+| Store Admin | 가맹점주 | 매장 정보 변경, 당일 테이블 레이아웃 수정, 당일 매출 현황 판독, 원자재 재고 등록, 일일 정산금 관리, 직원 권한 부여 | 본사 마스터 메뉴 강제 삭제 불가 (단, 자체 메뉴 생성 가능 권한 부여 여부는 본사 정책 따름) |
+
+| Staff | 홀/주방 서빙 직원 | 실시간 주문 접수/수락/취소, 조리 상태 변경(조리중, 서빙완료), 테이블 상태 수동 초기화, 품절 수동 처리 | 매출 통계, 요금제 변경, 정산 데이터 접근 원천 불가 |
+
+9. 데이터베이스 설계 (ERD & Database Schema)
+
+9.1 관계형 데이터베이스 ERD 구조 및 관계 정의
+
+Franchise (1) ── (N) Brands
+
+Brands (1) ── (N) Stores
+
+Stores (1) ── (N) Menus
+
+Stores (1) ── (N) Orders
+
+Menus (1) ── (N) OrderItems
+
+Orders (1) ── (N) OrderItems
+
+Orders (1) ── (1) Payments
+
+9.2 주요 테이블 스키마 정의 (DDL 수준)
+
+-- 1. Brands (브랜드 정보 테이블)
+
+CREATE TABLE Brands (
+
+brand_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+brand_name VARCHAR(100) NOT NULL,
+
+ceo_name VARCHAR(50) NOT NULL,
+
+corporate_no VARCHAR(20) UNIQUE NOT NULL,
+
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+
+-- 2. Stores (개별 가맹 매장 테이블)
+
+CREATE TABLE Stores (
+
+store_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+brand_id UUID REFERENCES Brands(brand_id) ON DELETE SET NULL,
+
+store_name VARCHAR(100) NOT NULL,
+
+store_code VARCHAR(50) UNIQUE NOT NULL,
+
+owner_name VARCHAR(50) NOT NULL,
+
+phone_number VARCHAR(20) NOT NULL,
+
+address TEXT NOT NULL,
+
+status VARCHAR(20) DEFAULT 'ACTIVE', -- ACTIVE, SUSPENDED, TERMINATED
+
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+
+-- 3. Categories (메뉴 분류 카테고리 테이블)
+
+CREATE TABLE Categories (
+
+category_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+store_id UUID NOT NULL REFERENCES Stores(store_id) ON DELETE CASCADE,
+
+category_name VARCHAR(50) NOT NULL,
+
+display_order INT DEFAULT 0,
+
+is_active BOOLEAN DEFAULT TRUE,
+
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+
+-- 4. Menus (메뉴 기본 정보 테이블)
+
+CREATE TABLE Menus (
+
+menu_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+category_id UUID NOT NULL REFERENCES Categories(category_id) ON DELETE CASCADE,
+
+menu_name VARCHAR(100) NOT NULL,
+
+price DECIMAL(12, 2) NOT NULL CHECK (price >= 0),
+
+description TEXT,
+
+image_url TEXT,
+
+is_sold_out BOOLEAN DEFAULT FALSE,
+
+is_hidden BOOLEAN DEFAULT FALSE,
+
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+
+-- 5. Orders (주문 마스터 테이블)
+
+CREATE TABLE Orders (
+
+order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+store_id UUID NOT NULL REFERENCES Stores(store_id) ON DELETE CASCADE,
+
+table_no VARCHAR(20) NOT NULL,
+
+order_status VARCHAR(30) NOT NULL DEFAULT 'PENDING', -- PENDING, ACCEPTED, PREPARING, SERVED, CANCELLED
+
+total_amount DECIMAL(12, 2) NOT NULL DEFAULT 0.00,
+
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+
+-- 6. OrderItems (주문 세부 상품 테이블)
+
+CREATE TABLE OrderItems (
+
+order_item_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+order_id UUID NOT NULL REFERENCES Orders(order_id) ON DELETE CASCADE,
+
+menu_id UUID NOT NULL REFERENCES Menus(menu_id),
+
+quantity INT NOT NULL CHECK (quantity > 0),
+
+unit_price DECIMAL(12, 2) NOT NULL,
+
+subtotal_price DECIMAL(12, 2) NOT NULL
+
+);
+
+
+
+-- 7. Payments (결제 기록 테이블)
+
+CREATE TABLE Payments (
+
+payment_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+order_id UUID NOT NULL UNIQUE REFERENCES Orders(order_id) ON DELETE CASCADE,
+
+pg_transaction_id VARCHAR(100) UNIQUE,
+
+payment_method VARCHAR(50) NOT NULL, -- KAKAO_PAY, TOSS_PAY, CREDIT_CARD
+
+payment_status VARCHAR(30) NOT NULL DEFAULT 'READY', -- READY, COMPLETED, FAILED, REFUNDED
+
+paid_amount DECIMAL(12, 2) NOT NULL,
+
+paid_at TIMESTAMP WITH TIME ZONE,
+
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+
+);
+
+10. AI 지능형 기능 추가 기획 (AI-Powered Analytics)
+
+비대면 주문 플랫폼을 단순한 기기가 아닌 "지능형 매니저"로 진화시키기 위한 인공지능 활용 기획입니다.
+
+[고객 맞춤 서비스] [매장 운영 자동화]
+
+┌───────────────────────────────┐ ┌───────────────────────────────┐
+
+│ • 초개인화 AI 추천 엔진 │ │ • 지능형 수요 예측 솔루션 │
+
+│ - 구매 여정, 날씨, 인구통계학 │ │ - 내일 주문량 시계열 모델 예측 │
+
+│ - 연계 메뉴 자동 제안 (업셀링)│ │ - 신선재고 손실 최소화 │
+
+└───────────────────────────────┘ └───────────────────────────────┘
+
+초개인화 AI 추천 엔진 (Personalized Recommender):
+
+로직: 고객이 QR 스캔 시 유입 경로, 기온/강수량 등 날씨 API 데이터, 기존 주문 이력(익명화 세션 ID 기준 및 로그 기반 매칭)을 결합하여 추천 가치를 판단합니다.
+
+업셀링 가치: 사이드 메뉴 및 음료 결합 조합(예: "치즈버거"를 고른 고객에게 "해쉬브라운" 추천율 $27\%$ 상승 유도)을 계산하여 고객 객단가를 $15\%$ 이상 강제 견인합니다.
+
+지능형 수요 예측 및 재고 관리 (Predictive Stock Management):
+
+로직: LSTM(Long Short-Term Memory) 또는 GRU 기반 시계열 예측 모델을 적용하여 과거 매장 요일별 매출 흐름, 계절성, 공휴일 변수를 학습합니다.
+
+가치: 점주에게 "내일 오전 예상 우유 소비량은 $23\text{L}$입니다. 현재 재고량 $8\text{L}$ 대비 $15\text{L}$의 선주문이 필요합니다"라는 인사이트를 실시간 앱으로 제공함으로써 유통 기한 손실비용을 최대 $30\%$ 저감시킵니다.
+
+11. MVP(최소 기능 제품) 설계 및 우선순위 선정
+
+초기 3개월 집중 개발 후 런칭을 성공적으로 이끌기 위해 애자일 프레임워크 기반의 우선순위(Priority) 맵을 수립합니다.
+
+11.1 MVP 기능 분류표
+
+| 구분 | 기능 ID | 기능 내용 | 우선순위 (P0/P1/P2) | MVP 포함 여부 |
+
+| 고객 | CU-01 | 카메라 스캔 즉시 모바일 웹 리다이렉션 구동 | P0 | O |
+
+| 고객 | CU-02 | 장바구니 담기, 수량 조정 및 옵션 추가 | P0 | O |
+
+| 고객 | CU-03 | PG 연동 단독 주문 및 신용카드 1회성 간편결제 | P0 | O |
+
+| 고객 | CU-04 | 실시간 다중 접속자용 공동 장바구니 동기화 | P1 | O (베타) |
+
+| 점주 | ST-01 | 실시간 주문 수락 알림 음성 알림 및 대시보드 | P0 | O |
+
+| 점주 | ST-02 | 마스터 메뉴판 생성, 편집, 메뉴 카테고리 구성 | P0 | O |
+
+| 점주 | ST-03 | 주문 건 강제 거절/취소 및 PG 연동 환불 처리 | P0 | O |
+
+| 점주 | ST-04 | 당일 총매출 조회 및 일간 분석 차트 렌더링 | P1 | O |
+
+| 운영 | OP-01 | 신규 매장 수동 등록 및 가맹 계약 상태 조정 | P0 | O |
+
+| 운영 | OP-02 | PG 고유 키값 등록 매칭 모듈 및 세금 정산 로직 | P1 | O |
+
+| AI | AI-01 | AI 인공지능 날씨/상권 기반 실시간 메뉴 자동 추천 | P2 | X (Phase 2 탑재) |
+
+P0 (Critical): 비즈니스 가동을 위한 필수 제로 터치 핵심 기능 (3개월 내 무조건 완료).
+
+P1 (Important): 매장 운영 최적화를 극대화하는 편의 기능 (릴리즈 마일스톤 연동).
+
+P2 (Nice-to-Have): 고도화 AI 자동화 및 정교한 CRM 캠페인 툴 (Phase 2 진행).
+
+12. 3개년 비즈니스 확장 로드맵 (Expansion Roadmap)
+
+[Phase 1: Market Entry] ────> [Phase 2: Scale-Up] ────> [Phase 3: Ecosystem]
+
+• 1~12개월: 소상공인 집중 • 13~24개월: 다점포/프랜차이즈 • 25~36개월: 글로벌 F&B DX
+
+• 목표 가맹점: 1,000개 • 목표 가맹점: 5,000개 • 목표 가맹점: 15,000개
+
+• BM 검증 및 기본 기능 안정화 • AI 엔진 및 그룹 통합 관리 • 다국어, 글로벌 PG 연동
+
+1년차 (Market Entry): 수도권 소규모 개인 자영업자를 공략, Zero H/W 무료 체험 프로모션을 활용하여 1,000개 이상 활성 가맹점 확보. 핵심 주문/결제 데이터 정합성 강화.
+
+2년차 (Scale-Up & Multi-Tenant optimization): 중소규모 체인 브랜드(20개 이하 지점 보유 가맹사) 적극 영업 제휴. 본사 통합 HQ 어드민 대시보드 공식 출시. AI 기반 수요 예측 및 실시간 테이블 데이터 연동 마일스톤 공개.
+
+3년차 (Global F&B Ecosystem): 대형 프랜차이즈 기업 고객을 유치하여 연간 결제 거래 금액(GMV) 5,000억 원 돌파. 동남아, 일본, 미국 지점을 둔 글로벌 한인 F&B 체인점을 대상으로 한 다국어 스마트 QR 인프라 보급 및 글로벌 다국가 결제 수단(Paypal, LinePay, WeChat Pay 등) 동시 적용.
+
+13. 기술 스택 제안 (Tech Stack Architecture)
+
+지속 가능한 확장성(Scalability)과 고성능 서비스 구동을 위해 현대화된 모던 웹 아키텍처 스택을 규정합니다.
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+
+│ FRONTEND LAYER │
+
+│ - Next.js (SSR, Page Router) / TypeScript / Tailwind CSS / Zustand │
+
+└──────────────────────────────────────┬──────────────────────────────────────┘
+
+│ (REST API / WebSockets)
+
+▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+
+│ BACKEND LAYER │
+
+│ - NestJS (TypeScript) / Node.js Runtime / Prisma (ORM) │
+
+└──────────────────────────────────────┬──────────────────────────────────────┘
+
+│
+
+┌──────────────────────────┴──────────────────────────┐
+
+▼ ▼
+
+┌──────────────────────────────────────┐ ┌───────────────────────┐
+
+│ DATA STORAGE │ │ CLOUD INFRA │
+
+│ - PostgreSQL (Relational DB) │ │ - AWS ECS (Fargate) │
+
+│ - Redis (Session, Cache, Pub/Sub) │ │ - S3 (Assets) │
+
+└──────────────────────────────────────┘ └───────────────────────┘
+
+Frontend (Next.js & React): 초고속 모바일 로딩 성능을 확보하기 위해 서버사이드 렌더링(SSR) 및 정적 사이트 재생성(ISR)에 최적화된 Next.js 프레임워크 기반 런타임 사용. 모바일 UI의 빠른 렌더링을 위해 CSS 프레임워크는 Tailwind CSS를, 프론트엔드 상태 관리는 가볍고 유연한 Zustand 탑재.
+
+Backend (NestJS & Prisma): 정밀한 의존성 주입(Dependency Injection)과 확장 가능한 디렉토리 모듈식 아키텍처 제공을 위해 NestJS 프레임워크로 엔드포인트 단일화. 타입 안정성(Type Safety)이 보장된 최신 Prisma ORM을 사용해 DB 계층 레이블 처리 고속화.
+
+Database (PostgreSQL & Redis Cache): 주문의 원자성(ACID) 준수를 위해 Postgres 릴레이셔널 관계형 데이터베이스 사용. 메뉴 정보의 실시간 캐싱 및 실시간 웹소켓 세션 분산을 통제하기 위해 고성능 Redis 메모리 데이터 베이스를 중간에 배치하여 쓰기/읽기 부하 분할 처리.
+
+Cloud Architecture (AWS): 서버 컨테이너화 가상 자원을 자동으로 유지관리(Orchestrating)하기 위해 AWS ECS Fargate 컨테이너 기반 클러스터링 적용 및 CloudFront CDN 에지 캐싱을 통한 정적 데이터 전송 한계 최저치 보장.
+
+14. API 설계 (RESTful API Specifications)
+
+프론트엔드 개발팀 및 제휴 연동 팀과 즉시 통합 테스트가 가능하도록 API 규격 표준 양식을 제공합니다.
+
+14.1 주요 Endpoint Overview
+
+GET /stores/{id}/menus : 해당 매장의 실시간 카테고리 구성 및 전체 메뉴판 목록 조회.
+
+POST /orders : 신규 단독 혹은 공유 테이블 장바구니 품목 기반 주문서 임시 발급.
+
+POST /payments/confirm : PG사 결제 승인 후 최종 주문 확정 및 주방 전파 처리.
+
+PATCH /orders/{id}/status : 주방 직원의 주문 조리 상태값 변경 제어.
+
+14.2 주요 API 설계 상세 명세서
+
+1) GET /stores/{storeId}/menus (매장 메뉴판 조회 API)
+
+Request URL: GET https://api.smartqrorder.com/v1/stores/88f3a218-19f4-4b53-bc2a-ee64d88e0012/menus
+
+Headers:
+
+{
+
+"Content-Type": "application/json"
+
+}
+
+Success Response (200 OK):
+
+{
+
+"success": true,
+
+"data": {
+
+"storeId": "88f3a218-19f4-4b53-bc2a-ee64d88e0012",
+
+"storeName": "스마트커피 강남점",
+
+"categories": [
+
+{
+
+"categoryId": "c001a1d1-6677-44aa-99bb-998877665544",
+
+"categoryName": "에스프레소 음료",
+
+"displayOrder": 1,
+
+"menus": [
+
+{
+
+"menuId": "m111aa22-33bb-44cc-55dd-ee66ff778899",
+
+"menuName": "아이스 아메리카노",
+
+"price": 4500.00,
+
+"description": "고소한 원두와 진한 풍미가 가득한 대표 시그니처 아이스 메뉴",
+
+"imageUrl": "https://cdn.smartqrorder.com/menus/ice_americano.png",
+
+"isSoldOut": false
+
+}
+
+]
+
+}
+
+]
+
+}
+
+}
+
+2) POST /orders (신규 주문 요청 API)
+
+Request URL: POST https://api.smartqrorder.com/v1/orders
+
+Body Request Parameter:
+
+{
+
+"storeId": "88f3a218-19f4-4b53-bc2a-ee64d88e0012",
+
+"tableNo": "T-15",
+
+"items": [
+
+{
+
+"menuId": "m111aa22-33bb-44cc-55dd-ee66ff778899",
+
+"quantity": 2,
+
+"unitPrice": 4500.00
+
+}
+
+],
+
+"totalAmount": 9000.00
+
+}
+
+Success Response (201 Created):
+
+{
+
+"success": true,
+
+"message": "주문서가 성공적으로 임시 생성되었습니다.",
+
+"data": {
+
+"orderId": "6511a34b-b892-4ccb-b0b3-1fcfb776263a",
+
+"orderStatus": "PENDING",
+
+"totalAmount": 9000.00,
+
+"paymentRedirectUrl": "https://api.smartqrorder.com/v1/payments/checkout?orderId=6511a34b-b892-4ccb-b0b3-1fcfb776263a"
+
+}
+
+}
+
+3) POST /payments/confirm (결제 승인 최종 주문 확정 API)
+
+Request URL: POST https://api.smartqrorder.com/v1/payments/confirm
+
+Body Request Parameter:
+
+{
+
+"paymentKey": "toss_pay_key_20260608_abcdef",
+
+"orderId": "6511a34b-b892-4ccb-b0b3-1fcfb776263a",
+
+"amount": 9000.00
+
+}
+
+Success Response (200 OK):
+
+{
+
+"success": true,
+
+"message": "결제 승인 및 최종 주문 접수가 정상적으로 승인 처리되었습니다.",
+
+"data": {
+
+"paymentId": "p0001-9988-7766-5544",
+
+"orderId": "6511a34b-b892-4ccb-b0b3-1fcfb776263a",
+
+"paymentStatus": "COMPLETED",
+
+"tableNo": "T-15",
+
+"orderedAt": "2026-06-08T14:03:00Z"
+
+}
+
+}
+
+15. 투자 유치용 사업계획서 & 피치덱 (Pitch Deck)
+
+15.1 슬라이드별 핵심 구성 안
+
+Slide 1: 타이틀 (Cover Slide)
+
+메시지: 오프라인 F&B 비즈니스를 재정의하다: 스마트 H/W 프리 QR 오더 플랫폼, Smart QR Order.
+
+Slide 2: 문제 정의 (Problem Statement)
+
+메시지: "테이블오더 대당 월 15,000원 렌탈비, 1인 점주는 여전히 피눈물을 흘리고 있습니다." 인건비 절감 대안이었던 비싼 기기 설치의 악순환 제시.
+
+Slide 3: 해결 방안 (Solution)
+
+메시지: "스티커 한 장으로 끝냅니다." 3초 스캔, Zero 하드웨어 설치, 즉시 구동되는 SaaS QR 오더 솔루션.
+
+Slide 4: 제품/서비스 소개 (Product Showcase)
+
+메시지: 모바일 인터페이스 디자인 뷰, 더치페이 동기화, 실시간 주방 통신 알림 모듈 시각화.
+
+Slide 5: 시장 분석 (Market Size TAM/SAM/SOM)
+
+TAM (글로벌 스마트 오프라인 시장): 20조 원
+
+SAM (국내 F&B 오프라인 테크 가용 시장): 3조 원
+
+SOM (국내 소상공인 및 소형 프랜차이즈 점유 목표): 2,000억 원
+
+Slide 6: 비즈니스 모델 (SaaS & Fee Model)
+
+메시지: 명확한 월 구독 요금 체계(Tier별 9,900원 / 49,000원) 및 결제 수수료 추가 정산 셰어를 통한 더블 캐시카우 수립.
+
+Slide 7: 경쟁력 우위 (Unfair Advantage)
+
+메시지: 다른 기업들은 기기 하드웨어 영업에 머물러 있지만, 당사는 데이터를 모으는 SaaS 플랫폼입니다. 프랜차이즈용 강력한 관리자 권한 레이어(Multi-Tenant RBAC)와 AI 맞춤형 타겟 메뉴 제안 솔루션.
+
+Slide 8: 마케팅 및 성장 전략 (Go-To-Market & Growth Strategy)
+
+메시지: 소상공인 상생 협회 제휴, 초기 6개월 수수료 동결 마케팅 프로모션 및 프랜차이즈 본사 영업(B2B)을 연계한 대규모 지점 단위의 단기간 탑다운 유치.
+
+Slide 9: 재무 전망 (Financial Projections)
+
+메시지: 2년차 순익분기점 달성, 3년차 영업이익률 $35\%$ 이상 고성장 고수익 비즈니스화 입증.
+
+Slide 10: 투자금 활용 계획 (Use of Funds)
+
+메시지: 총 Seed/Series A 목표 라운드 15억 원 유치. 개발 핵심 자원 충원 ($50\%$), 가맹 지사 확장을 위한 B2B 필드 마케팅 ($30\%$), 서버 및 글로벌 인프라 선구축 ($20\%$).
+
+15.2 3개년 재무 계획 및 가맹점 예측 전망
+
+가입 매장 수 예측 모델:
+
+1년차 말: 1,200개 가맹점 확보 (매출 BEP 돌파 시점)
+
+2년차 말: 5,500개 가맹점 확보 (SaaS 정기 구독 안착 단계)
+
+3년차 말: 15,000개 가맹점 확보 (프랜차이즈 다수 체결 시기)
+
+추정 매출 요약:
+
+1년차 총매출액: 약 5.5억 원 (구독매출 중심 및 PG 가맹 등록 프로모션)
+
+2년차 총매출액: 약 42억 원 (SaaS 매출 본격화 및 부가 API 서비스 유료화)
+
+3년차 총매출액: 약 155억 원 (수수료 셰어 극대화 및 프랜차이즈 B2B 엔터프라이즈 전용 구축 패키지 수주)
+
+부록. 개발 일정표 (WBS - Work Breakdown Structure)
+
+초기 MVP 제작부터 실 매장 시범 테스트까지 12주(3개월) 일정입니다.
+
+주차 (Weeks) W1-W2 W3-W4 W5-W6 W7-W8 W9-W10 W11-W12
+
+─────────────────────────────────────────────────────────────────────────────
+
+기획 & 데이터설계 [██████]
+
+DB 및 인프라구축 [██████]
+
+Backend API 개발 [██████]
+
+Frontend 웹 구축 [██████]
+
+PG 연동 및 보안 테스트 [██████]
+
+베타 테스트 & 런칭 [██████]
+
+W1 ~ W2: 기획 및 아키텍처 상세 구체화
+
+유즈케이스 설계 및 DB 테이블 DDL 구성 완료, 프론트엔드 와이어프레임 설계 확정.
+
+W3 ~ W4: DB 세팅 및 NestJS API 서버 기초 구축
+
+AWS VPC 환경 설정, Postgres 인스턴스 연동, 기본 인증 모듈(JWT) 완료.
+
+W5 ~ W6: 백엔드 핵심 기능 개발 (메뉴, 주문, 점주 포탈 API)
+
+주문 생성, 메뉴판 노출 처리 모듈 및 Websocket을 이용한 실시간 주방 주문 전송 프로토콜 구현.
+
+W7 ~ W8: 프론트엔드 Next.js UI 마운트 및 연동
+
+반응형 모바일 메뉴판 화면 제작, 장바구니 기능 연동, 점주 어드민 대시보드 UI 연동.
+
+W9 ~ W10: PG 연동 및 보안 가상 정밀 테스트
+
+토스페이먼츠 및 간편결제 연동 연계 모니터링, 실 트래픽 대비 분산 동시성 제어 테스트.
+
+W11 ~ W12: 파일럿 점포 실 적용 테스트 및 최종 디버깅
+
+실제 카페 2개 지점에 QR코드 거치대 설치 후 최종 현장 알파/베타 테스트 수락 검증, 플랫폼 서비스 공식 런칭.
+
+위 내용을 고도화 하여 PDF기획서로 만들어 주셔요.
+
+요청하신 Smart QR Order Platform 통합 기획서 및 사업계획서 PDF 파일이 완성되었습니다.
+PDF 아이콘
+ smart_qr_order_plan 
+ PDF 
+
+전달해주신 방대한 기획 및 사업 내용들을 바탕으로, 스타트업 투자 유치 및 개발 지침으로 즉시 활용할 수 있도록 다음과 같이 고도화하여 디자인했습니다.
+
+전문적인 표지와 레이아웃 적용: 전체 문서의 첫 페이지에 투자 유치용 타이틀 커버를 배치하고, 시스템 구조와 사업 흐름이 명확히 보이도록 A4 규격의 세련된 디자인을 적용했습니다.
+
+복잡한 정보의 시각화: SWOT 분석, 고객 세그먼테이션(1~3단계), 3개년 로드맵 등을 표와 카드 형태의 시각적 요소로 재구성하여 가독성을 크게 높였습니다.
+
+개발 및 시스템 아키텍처 구조화: 데이터베이스 DDL 테이블, API 설계 명세, WBS 갠트 차트 일정표 등 개발팀이 즉시 참고할 수 있는 내용들을 코드 블록과 단계별 타임라인 형식으로 정리했습니다.
+
+문서를 확인해 보시고, 추가적으로 보완할 내용이나 수정 사항이 있다면 언제든지 말씀해 주시기 바랍니다.
+
+위 내용을 github에 배포하도록 index.html 페이지를 만들어주셔요.
+
+GitHub Pages에 바로 배포하실 수 있도록 현대적이고 깔끔한 UI가 적용된 index.html 파일이 준비되었습니다.
+HTML 아이콘
+ index 
+ HTML 
+
+적용된 디자인 특징:
+
+GitHub Pages 최적화 레이아웃: 브라우저 전체 화면을 활용하면서도 가독성을 유지하는 중앙 정렬 레이아웃(max-width)을 적용했습니다. 상단에는 네비게이션 바(Top Bar)를 배치하여 웹사이트의 형태를 갖추었습니다.
+
+모던 웹 폰트 적용: 가독성이 뛰어난 구글 웹 폰트인 'Noto Sans KR'과 코드 블록에 어울리는 'JetBrains Mono' 폰트를 연동하였습니다.
+
+반응형 웹(Responsive Web) 디자인: 모바일 및 태블릿 환경에서도 깨지지 않고 자연스럽게 표와 내용이 스크롤될 수 있도록 미디어 쿼리(Media Query)와 overflow-x: auto 등의 CSS 처리를 완벽하게 추가했습니다.
+
+이 파일을 다운로드 받으신 후, GitHub 저장소에 올리시고 GitHub Pages 기능을 활성화(Settings > Pages)하시면 곧바로 웹상에서 기획서를 확인하실 수 있습니다.
+
+
+
+
+아이티존 채팅은 Gemini 모델을 개선하는 데 사용되지 않습니다. Gemini는 AI이므로 실수를 할 수 있으니 다시 한번 확인하세요. 개인 정보 보호 및 Gemini새 창에서 열기
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart QR Order Platform - 통합 기획서 및 사업계획서</title>
+    <!-- Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --success: #16a34a;
+            --success-light: #f0fdf4;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --warning: #ea580c;
+            --warning-light: #fff7ed;
+            --purple: #8b5cf6;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--slate-800);
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation or Top Bar for GitHub Pages style */
+        .top-navbar {
+            background-color: var(--slate-900);
+            color: #ffffff;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-navbar .brand {
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.5px;
+        }
+
+        .top-navbar .badge {
+            background-color: var(--danger);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .document-body {
+            background-color: #ffffff;
+            padding: 50px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .document-body {
+                padding: 30px 20px;
+            }
+            .container {
+                margin: 20px auto;
+            }
+        }
+        
+        /* Cover Header Styling */
+        .cover-banner {
+            background-color: var(--slate-900);
+            color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        
+        .cover-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #60a5fa;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .cover-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .cover-title span {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #93c5fd;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.05rem;
+            color: var(--slate-400);
+            margin: 0;
+            font-weight: 300;
+        }
+        
+        .cover-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--slate-700);
+            padding-top: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--slate-400);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        
+        .meta-value {
+            font-size: 0.95rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+        
+        /* Typography */
+        h1.section-title {
+            font-size: 1.65rem;
+            color: var(--slate-900);
+            margin-top: 50px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--slate-900);
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.25rem;
+            color: var(--slate-800);
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.05rem;
+            color: var(--slate-700);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 0 0 16px 0;
+            text-align: justify;
+            color: var(--slate-700);
+        }
+        
+        ul, ol {
+            margin: 0 0 20px 0;
+            padding-left: 24px;
+            color: var(--slate-700);
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: var(--slate-900);
+            font-weight: 700;
+        }
+        
+        /* Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--slate-100);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--slate-800);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            border: 1px solid var(--slate-700);
+        }
+        
+        td {
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            border: 1px solid var(--slate-100);
+            color: var(--slate-700);
+            background-color: #ffffff;
+        }
+        
+        tr:nth-child(even) td {
+            background-color: var(--slate-50);
+        }
+        
+        /* Highlighted Column for Competitor Matrix */
+        td.highlight-col {
+            background-color: var(--primary-light) !important;
+            border: 2px solid var(--primary);
+            font-weight: 600;
+        }
+        th.highlight-col {
+            background-color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        /* SWOT Matrix Layout */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .swot-box {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .swot-s { background-color: var(--success-light); border: 1px solid #bbf7d0; border-left: 5px solid var(--success); }
+        .swot-w { background-color: var(--danger-light); border: 1px solid #fecaca; border-left: 5px solid var(--danger); }
+        .swot-o { background-color: var(--primary-light); border: 1px solid #bfdbfe; border-left: 5px solid var(--primary); }
+        .swot-t { background-color: var(--warning-light); border: 1px solid #ffedd5; border-left: 5px solid var(--warning); }
+        
+        .swot-header {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .swot-s .swot-header { color: #166534; }
+        .swot-w .swot-header { color: #991b1b; }
+        .swot-o .swot-header { color: #1e40af; }
+        .swot-t .swot-header { color: #9a3412; }
+        
+        /* Customer Segment Cards Layout */
+        .segment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .segment-card {
+            padding: 24px;
+            background-color: #ffffff;
+            border: 1px solid var(--slate-100);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .segment-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .segment-card h3 {
+            margin-top: 0;
+            color: var(--slate-900);
+            font-size: 1.15rem;
+        }
+        
+        .segment-card .tag {
+            display: inline-block;
+            background-color: var(--slate-100);
+            color: var(--slate-600);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+        
+        .segment-card:nth-child(1) { border-top: 4px solid var(--primary); }
+        .segment-card:nth-child(2) { border-top: 4px solid var(--success); }
+        .segment-card:nth-child(3) { border-top: 4px solid var(--purple); }
+        
+        /* Math Blocks */
+        .math-block {
+            text-align: center;
+            margin: 25px 0;
+            background-color: var(--slate-50);
+            border: 1px solid var(--slate-100);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .math {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: #1e3a8a;
+        }
+        
+        /* Architecture Flow Diagram */
+        .architecture-container {
+            background-color: #ffffff;
+            border: 1px solid var(--slate-100);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .arch-layer {
+            border: 1px dashed var(--slate-400);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: var(--slate-50);
+        }
+        
+        .arch-layer-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--slate-500);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .arch-box {
+            background-color: #ffffff;
+            border: 1px solid var(--slate-400);
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--slate-800);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        
+        .arch-arrow {
+            text-align: center;
+            color: var(--slate-400);
+            font-size: 1.25rem;
+            margin: 8px 0;
+        }
+        
+        .client-box { border-left: 4px solid var(--primary); }
+        .network-box { border-left: 4px solid var(--success); }
+        .server-box { border-left: 4px solid #f59e0b; }
+        .db-box { border-left: 4px solid var(--danger); }
+        
+        /* Code Blocks */
+        pre {
+            background-color: var(--slate-900);
+            color: var(--slate-50);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0 25px 0;
+            border: 1px solid var(--slate-800);
+        }
+        
+        code {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            color: var(--danger);
+            background-color: var(--slate-100);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        pre code {
+            color: inherit;
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: inherit;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--slate-100);
+            color: var(--slate-400);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-navbar">
+        <div class="brand">Smart QR Order Platform Pitch Site</div>
+        <div class="badge">CONFIDENTIAL</div>
+    </div>
+
+    <div class="container">
+        <div class="document-body">
+            
+            <!-- Document Header -->
+            <div class="cover-banner">
+                <div class="cover-tag">Startup Investment & Development Guide</div>
+                <h1 class="cover-title">
+                    Smart QR Order Platform
+                    <span>통합 기획서 및 사업계획서</span>
+                </h1>
+                <p class="cover-subtitle">- 스타트업 투자 유치 및 개발 구현을 위한 End-to-End 가이드라인 -</p>
+                
+                <div class="cover-meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">문서 버전</span>
+                        <span class="meta-value">v1.0.0 (공식 배포판)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">발행기관</span>
+                        <span class="meta-value">F&B 테크 파트너스 사업기획팀</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">최종 수정</span>
+                        <span class="meta-value">2026년 6월 8일</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1. 사업 개요 -->
+            <h1 class="section-title">1. 사업 개요 (Service Overview)</h1>
+            
+            <h2>1.1 서비스 비전 및 미션</h2>
+            <p>
+                <strong>비전 (Vision):</strong> "매장과 고객을 데이터로 연결하여, 오프라인 F&B 비즈니스의 디지털 전환(DX)을 선도하는 글로벌 No.1 SaaS 플랫폼"
+            </p>
+            <p>
+                <strong>미션 (Mission):</strong> "오프라인 매장의 운영 비용을 혁신적으로 절감하고, 초개인화된 맞춤형 주문 경험을 통해 가맹점의 매출 극대화와 고객 만족을 동시에 실현한다."
+            </p>
+
+            <h2>1.2 시장의 문제점 및 기존 주문 방식의 한계</h2>
+            <ul>
+                <li><strong>높은 인건비 및 구인난:</strong> 국내 F&B 매장의 고정비 중 인건비 비중은 30%를 상회하고 있으며, 지속적인 최저임금 인상과 구인난으로 인해 매장 운영의 난이도가 극대화되고 있습니다.</li>
+                <li><strong>하드웨어 도입 및 유지보수 비용 (키오스크/테이블오더):</strong> 하드웨어 기반 테이블오더는 테이블당 과도한 초기 설치비용(대당 30~50만 원) 및 월 정액 렌탈료 부담이 큽니다. 고장 발생 시 현장 출동 AS 대기로 인한 주문 공백이 발생하며, 전력 소모 및 매장 인테리어 훼손 문제 역시 심각합니다.</li>
+                <li><strong>데이터 파편화 및 단절:</strong> 기존 포스(POS), 배달 앱, 테이블오더가 상호 단절 및 분리되어 있어, 고객의 실제 행동 데이터(주문 주기, 메뉴 탐색 패턴, 체류 시간 등)를 심층 분석하거나 마케팅에 즉각적으로 활용하기가 원천적으로 불가능합니다.</li>
+            </ul>
+
+            <h2>1.3 QR 주문 서비스의 필요성 및 기대효과</h2>
+            <ul>
+                <li><strong>Zero-Hardware (H/W 프리):</strong> 가맹점주는 별도의 전용 단말기 구매나 통신선 배선 공사 없이, 고유 QR 코드가 인쇄된 스티커 및 거치대만 테이블에 부착하면 즉시 서비스를 도입할 수 있습니다.</li>
+                <li><strong>비대면 즉시성:</strong> 고객은 별도의 모바일 앱 다운로드 및 번거로운 회원가입 절차 없이, 스마트폰 카메라 스캔만으로 웹(Web) 환경에서 3초 만에 메뉴 조회부터 결제까지 원스톱으로 완수합니다.</li>
+                <li><strong>효율성 극대화:</strong> 
+                    <ul>
+                        <li>매장 측면: 주문 접수 및 대면 결제 동선 소멸로 테이블 회전율이 25% 증가하며, 홀 서빙 인력 리소스를 40% 이상 절감할 수 있습니다.</li>
+                        <li>고객 측면: 피크타임 대기열 없는 즉각적인 주문이 가능하며, 더치페이 등 고도화된 편의 기능을 제공받습니다.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- 2. 시장 분석 -->
+            <h1 class="section-title">2. 시장 분석 (Market Analysis)</h1>
+            
+            <h2>2.1 시장 규모 및 동향</h2>
+            <p>
+                국내 푸드테크 및 스마트오더 시장은 연평균 18.5% 씩 고속 성장하여 2026년 기준 약 5조 원 규모에 육박할 것으로 전망됩니다. 특히 글로벌 비대면 주문 시장은 스마트폰 보급률의 포화와 SaaS형 라이트 솔루션 선호도 확대에 힘입어 2030년까지 CAGR 22.1% 성장이 예측되고 있습니다.
+            </p>
+            <p>
+                초기 시장을 지배하던 대형 키오스크는 매장 공간 점유, 매장 입구 줄 서기 병목 현상, 시각 장애인 및 고령층의 접근성 제약(디지털 소외) 등으로 인해 테이블 단위의 개인화된 주문 디바이스(테이블오더, QR코드)로 급격히 시프트하는 추세입니다.
+            </p>
+
+            <h2>2.2 경쟁 서비스 분석 (Competitor Analysis)</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>비교 항목</th>
+                            <th>테이블오더 (티오더, 메뉴잇)</th>
+                            <th>포스 연동형 (페이히어 등)</th>
+                            <th>플랫폼형 (네이버, 배민)</th>
+                            <th class="highlight-col">Smart QR Order (본 서비스)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>도입 비용</strong></td>
+                            <td>매우 높음 (대당 월 1~2만원 렌탈, 약정 필수)</td>
+                            <td>보통 (SaaS POS 월 구독 및 전용 패드 구매)</td>
+                            <td>낮음 (H/W 필요 없음)</td>
+                            <td class="highlight-col">매우 낮음 (Zero H/W, QR 출력으로 즉시 개통)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>설치 및 관리</strong></td>
+                            <td>복잡함 (배선 공사 필요, 상시 충전 관리)</td>
+                            <td>보통 (무선 태블릿 거치)</td>
+                            <td>간편함</td>
+                            <td class="highlight-col">매우 간편함 (인쇄형 QR 스티커 배포로 종료)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>수수료/구독료</strong></td>
+                            <td>월정액 테이블 렌탈료 부담 가중</td>
+                            <td>결제 수수료 및 POS 구독료</td>
+                            <td>주문 건당 높은 수수료 (2~6%)</td>
+                            <td class="highlight-col">합리적 구독형 (Tier별 차등) + PG 수수료</td>
+                        </tr>
+                        <tr>
+                            <td><strong>프랜차이즈 관리</strong></td>
+                            <td>본사 통제 기능 미비, 지점별 개별 계약</td>
+                            <td>매장 매출 집계 위주 기능</td>
+                            <td>가맹점 DB 확보 제한, 플랫폼 의존성 심화</td>
+                            <td class="highlight-col">초고도화 통합 HQ 어드민 (일괄 통제 및 정책 분배)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>데이터 활용성</strong></td>
+                            <td>단순 주문 기능에 국한</td>
+                            <td>매출 통계 위주 제공</td>
+                            <td>네이버/배민 귀속 (점주 데이터 활용 불가)</td>
+                            <td class="highlight-col">가맹점 전용 CRM 및 AI 추천 엔진 자체 내장</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>2.3 SWOT 분석</h2>
+            <div class="swot-grid">
+                <div class="swot-box swot-s">
+                    <span class="swot-header">Strengths (강점)</span>
+                    <ul>
+                        <li>H/W 인프라 구축비 제로로 초저가 보급 가능</li>
+                        <li>프랜차이즈 및 다점포 최적화 다중 테넌트 구조</li>
+                        <li>가맹점 독립형 고객 분석 데이터(CRM) 확보</li>
+                    </ul>
+                </div>
+                <div class="swot-box swot-w">
+                    <span class="swot-header">Weaknesses (약점)</span>
+                    <ul>
+                        <li>앱 수준의 고성능 퍼포먼스를 웹 뷰로 구현해야 함</li>
+                        <li>사용자의 QR 스캔 행동 유도를 위한 마케팅 필요</li>
+                        <li>초기에 POS 연동 인프라 확보의 높은 공수</li>
+                    </ul>
+                </div>
+                <div class="swot-box swot-o">
+                    <span class="swot-header">Opportunities (기회)</span>
+                    <ul>
+                        <li>고금리·고물가 시대 가맹점의 비용 절감 요구 증대</li>
+                        <li>오프라인 F&B 매장의 디지털 전환(DX) 가속화</li>
+                        <li>글로벌 시장(K-Food 해외 매장) 진출 기회 다양</li>
+                    </ul>
+                </div>
+                <div class="swot-box swot-t">
+                    <span class="swot-header">Threats (위협)</span>
+                    <ul>
+                        <li>대형 배달 플랫폼의 QR 주문 시장 직접 진출 리스크</li>
+                        <li>간편결제(Apple Pay 등) 인프라 지원 지연 리스크</li>
+                        <li>과당 경쟁으로 인한 PG 결제 수수료 인하 압박</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. 고객 분석 -->
+            <h1 class="section-title">3. 고객 분석 (Customer Segmentation)</h1>
+            <div class="segment-grid">
+                <div class="segment-card">
+                    <h3>1단계: 1인 자영업자</h3>
+                    <p>개인 카페, 푸드트럭, 소형 식당</p>
+                    <span class="tag">극단적 비용 절감</span>
+                </div>
+                <div class="segment-card">
+                    <h3>2단계: 소규모 체인점</h3>
+                    <p>직영/가맹 2~10개 브랜드 매장</p>
+                    <span class="tag">매장간 효율성 비교</span>
+                </div>
+                <div class="segment-card">
+                    <h3>3단계: 대형 프랜차이즈</h3>
+                    <p>전국 10~1,000개 이상 매장 브랜드</p>
+                    <span class="tag">일괄 관리, 보안</span>
+                </div>
+            </div>
+
+            <h2>3.1 1단계: 1인 자영업자 (개인 카페, 개인 식당, 푸드트럭)</h2>
+            <p>
+                <strong>Pain Points:</strong> 1인 근무로 주문 접수, 조리, 서빙, 결제를 동시에 처리하면서 피크타임 시 고객 대기 지연 및 주문 유실이 대량 발생합니다. 초기 자본 부족으로 비싼 테이블오더 설치가 원천 불가합니다.
+            </p>
+            <p>
+                <strong>Solutions:</strong> 가장 저렴한 월 9,900원 Starter 플랜을 제공합니다. 고객 주문 즉시 주방으로 실시간 음성 및 알림톡이 전송되며, 선결제 기능으로 먹튀를 차단하고 홀 운영 효율을 2배 개선합니다.
+            </p>
+
+            <h2>3.2 2단계: 소규모 체인점 (지점 2~10개 미만)</h2>
+            <p>
+                <strong>Pain Points:</strong> 오너가 모든 매장에 상주할 수 없어 지점별 매출 현황, 인기 메뉴, 고객 반응의 비교 분석이 누락됩니다. 지점별 메뉴판 업데이트(품절, 가격 인상)를 일일이 유선이나 메신저로 처리하여 대응이 매우 느립니다.
+            </p>
+            <p>
+                <strong>Solutions:</strong> 멀티 매장 대시보드가 탑재된 Business 플랜을 제공합니다. 클릭 한 번으로 여러 매장의 가격과 메뉴 구성을 동기화하는 '그룹 일괄 관리 기능'을 제공하여 통합 관리를 지원합니다.
+            </p>
+
+            <h2>3.3 3단계: 대형 프랜차이즈 (매장 10개 이상 ~ 1,000개 이상)</h2>
+            <p>
+                <strong>Pain Points:</strong> 본사의 브랜드 아이덴티티(BI) 훼손 없는 공통 UI 디자인 템플릿 제어가 어려우며, 본사(HQ) 포탈과 가맹점(Store) 포탈 간의 권한 격리 및 재무 정산 구조가 매우 복잡합니다. 기존 ERP, 레거시 POS, CRM과의 유연한 API 연동이 필수적입니다.
+            </p>
+            <p>
+                <strong>Solutions:</strong> 커스텀 테마 설정 기능이 포함된 Enterprise 플랜을 제안합니다. 본사 MD용 메뉴 일괄 통제 시스템, 정산 분할 로직, 안정적인 Open API 연동 레이어를 제공합니다.
+            </p>
+
+            <!-- 4. 비즈니스 모델 설계 -->
+            <h1 class="section-title">4. 비즈니스 모델 설계 (Business Model)</h1>
+            
+            <h2>4.1 SaaS 구독 모델 (Monthly Subscription Tiers)</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>요금제 플랜</th>
+                            <th>타겟 그룹</th>
+                            <th>월 구독료</th>
+                            <th>주요 기능 범위</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Starter</strong></td>
+                            <td>1인 매장, 소상공인</td>
+                            <td>9,900원</td>
+                            <td>기본 모바일 메뉴판, 기본 QR 주문/결제, 주방 태블릿 웹, 실시간 기본 통계</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Business</strong></td>
+                            <td>일반 음식점, 다점포 점주</td>
+                            <td>49,000원</td>
+                            <td>Starter 모든 기능 + 멀티 매장 관리, AI 추천 메뉴판, 실시간 재고 연동, CRM 스탬프 쿠폰 발행</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise</strong></td>
+                            <td>프랜차이즈 본사, 대형 매장</td>
+                            <td>협의 (맞춤 견적)</td>
+                            <td>Business 모든 기능 + 본사 통합 어드민, ERP/POS 레거시 연동, BI 커스텀 테마, 전담 TAM 기술 지원</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4.2 결제 수수료 및 부가서비스 모델</h2>
+            <ul>
+                <li><strong>결제 수수료 셰어:</strong> PG 연동을 통한 온라인 간편결제 건당 결제 수수료의 일부를 카드사/PG사로부터 리베이트 수취하여 0.1~0.3% 수준의 순마진을 지속 확보합니다.</li>
+                <li><strong>부가서비스 (Value-Added Services):</strong>
+                    <ul>
+                        <li>알림톡 및 마케팅 메시지 자동 발송: 건당 발송료 부과 (LMS/SMS 실비 + 마크업 마진 15%).</li>
+                        <li>로컬 타겟 광고 패키지: 모바일 메뉴판 하단 영역에 지역 매장 제휴 광고 노출 및 광고료 수취.</li>
+                        <li>AI 상권 및 매출 예측 레포트: 월 19,000원 추가 시 제공하는 데이터 심화 구독 솔루션.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>4.3 유닛 이코노믹스 및 재무 분석</h2>
+            <p><strong>LTV (고객 생애 가치) 계산 공식:</strong></p>
+            <div class="math-block">
+                <span class="math">LTV = (ARPU &times; Margin) / Churn Rate</span>
+            </div>
+            <p>
+                가정: 평균 구독 및 수수료 기여 ARPU = 50,000원, 매출총이익률 Margin = 80%, 월간 이탈률 Churn Rate = 2% 일 때,
+            </p>
+            <div class="math-block">
+                <span class="math">LTV = (50,000 &times; 0.8) / 0.02 = 2,000,000원</span>
+            </div>
+            
+            <p><strong>CAC (고객 획득 비용) 관리 지표:</strong></p>
+            <div class="math-block">
+                <span class="math">CAC = 총 마케팅 및 영업 비용 / 신규 유치 가맹점 수</span>
+            </div>
+            <p>
+                목표 CAC를 300,000원 이하로 유지함으로써 LTV/CAC 비율을 6.6&times; 수준으로 탄탄하게 관리하여 성장성과 재무 건전성을 동시 확보합니다.
+            </p>
+
+            <!-- 5. 시스템 아키텍처 및 데이터 흐름 -->
+            <h1 class="section-title">5. 시스템 아키텍처 및 데이터 흐름</h1>
+            
+            <h2>5.1 데이터 및 서비스 흐름도 (Data & Service Flow)</h2>
+            <div class="architecture-container">
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Frontend Layer (Client)</div>
+                    <div class="arch-box client-box">고객 모바일 웹 앱 (Next.js SSR / Tailwind)</div>
+                </div>
+                <div class="arch-arrow">▼ (QR 스캔 후 CloudFront 라우팅)</div>
+                
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Network & Edge Layer</div>
+                    <div class="arch-box network-box">AWS CloudFront (Edge CDN) & ALB Load Balancer</div>
+                </div>
+                <div class="arch-arrow">▼ (API 트래픽 분산 처리)</div>
+                
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Core Backend Layer</div>
+                    <div class="arch-box server-box">NestJS API Server (오토스케일링 적용 가상 클러스터)</div>
+                </div>
+                <div class="arch-arrow">▼ (비동기 이벤트 발행 및 데이터 영속화)</div>
+                
+                <div class="arch-layer">
+                    <div class="arch-layer-title">Data Storage & Event Pipeline</div>
+                    <div class="arch-box db-box" style="margin-bottom:8px;">PostgreSQL Main DB (트랜잭션 ACID 보장)</div>
+                    <div class="arch-box network-box" style="margin-bottom:8px;">Redis Cache (메뉴 정보 캐싱 및 실시간 세션 관리)</div>
+                    <div class="arch-box server-box">Apache Kafka (이벤트 버스를 통한 비동기 전파)</div>
+                </div>
+                <div class="arch-arrow">▼</div>
+                
+                <div class="arch-layer">
+                    <div class="arch-layer-title">External & Consumer Layer</div>
+                    <div class="arch-box client-box" style="margin-bottom:5px;">가맹점 주방 태블릿 포탈 (WebSockets 실시간 푸시)</div>
+                    <div class="arch-box network-box" style="margin-bottom:5px;">통합 PG사 연동 계층 (Toss Pay, Kakao Pay, Naver Pay)</div>
+                    <div class="arch-box server-box">AI 분석 엔진 (Python 기반 실시간 추천 및 시계열 수요 예측)</div>
+                </div>
+            </div>
+
+            <!-- 6. 핵심 기능 정의 -->
+            <h1 class="section-title">6. 핵심 기능 정의 (Feature Specification)</h1>
+            <h2>6.1 사용자(고객) 기능 세부 명세</h2>
+            <ul>
+                <li><strong>QR-01 (즉시 진입):</strong> 별도 모바일 앱 설치 없이 QR 코드 스캔 시 암호화 테이블 정보가 담긴 파라미터 URL을 기반으로 즉시 브라우저 진입을 마운트합니다.</li>
+                <li><strong>ORD-01 (더치페이형 스마트 장바구니):</strong> Websocket 프로토콜 기반으로 동일 테이블에 착석한 여러 명의 사용자가 장바구니 내역을 실시간 편집 및 공유할 수 있습니다.</li>
+                <li><strong>PAY-01 (멀티 PG 간편결제):</strong> 주요 결제 플랫폼 API(토스, 네이버, 카카오, 애플페이)를 단일화 결제 레이어로 통합 지원합니다.</li>
+            </ul>
+
+            <!-- 9. 데이터베이스 설계 -->
+            <h1 class="section-title">9. 데이터베이스 설계 (ERD & Schema)</h1>
+            <h2>9.2 주요 테이블 스키마 정의 (DDL)</h2>
+            <pre><code>-- 1. Brands (브랜드 및 본사 정보)
+CREATE TABLE Brands (
+    brand_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    brand_name VARCHAR(100) NOT NULL,
+    ceo_name VARCHAR(50) NOT NULL,
+    corporate_no VARCHAR(20) UNIQUE NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Stores (개별 가맹 매장 정보)
+CREATE TABLE Stores (
+    store_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    brand_id UUID REFERENCES Brands(brand_id) ON DELETE SET NULL,
+    store_name VARCHAR(100) NOT NULL,
+    store_code VARCHAR(50) UNIQUE NOT NULL,
+    status VARCHAR(20) DEFAULT 'ACTIVE',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+            <!-- 부록. 개발 일정표 -->
+            <h1 class="section-title">부록. 개발 마일스톤 및 일정표 (WBS)</h1>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>세부 태스크명 (Task Name)</th>
+                            <th>W1-W2</th>
+                            <th>W3-W4</th>
+                            <th>W5-W6</th>
+                            <th>W7-W8</th>
+                            <th>W9-W10</th>
+                            <th>W11-W12</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. 요구사항 기획 및 데이터 모델링</td>
+                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2. Cloud 인프라 구축 및 초기화</td>
+                            <td></td>
+                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3. Backend API 및 Core 기능 개발</td>
+                            <td></td>
+                            <td></td>
+                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4. Frontend Next.js UI 마운트</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5. PG사 통합 결제 연동 및 테스트</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="background-color: var(--primary); color: white; text-align: center; font-weight: bold;">진행</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6. 시범 점포 테스트 및 파일럿 런칭</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="background-color: var(--success); color: white; text-align: center; font-weight: bold;">런칭</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+                &copy; 2026 Smart QR Order Platform Project. All Rights Reserved. Confidential Document.
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+index.html
+index.html 항목을 표시하는 중입니다.
